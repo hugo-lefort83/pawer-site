@@ -1,0 +1,162 @@
+/* Page des maîtres : ouverture et téléphone, anneaux, pièces, quartier des rencontres. */
+
+/* ─── Ouverture ───────────────────────────────────────────────────── */
+.ouverture { overflow-x: clip; padding-block: clamp(28px, 6vw, 76px) clamp(44px, 7vw, 96px); }
+.ouverture .conteneur { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 920px) { .ouverture .conteneur { grid-template-columns: 1.05fr 0.95fr; } }
+.ouverture-texte { display: grid; gap: 20px; min-width: 0; }
+.ouverture-texte .chapeau { max-width: 38ch; }
+
+.scene-telephone { position: relative; width: min(318px, 80vw); margin-inline: auto; }
+.coucou { position: absolute; z-index: 0; width: 34%; top: 6%; right: -24%; rotate: 10deg; }
+@media (max-width: 600px) { .coucou { display: none; } }
+.coucou img { width: 100%; height: auto; }
+.telephone {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 9 / 19;
+  padding: 10px;
+  border-radius: 46px;
+  background: var(--appareil);
+  box-shadow: 0 30px 60px rgba(61, 44, 30, 0.22), inset 0 0 0 2px var(--appareil-bord);
+}
+.ecran { position: relative; height: 100%; border-radius: 36px; overflow: hidden; background: #F3E9DC; container-type: inline-size; }
+.ecran .decor { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 100% 22%; }
+.ecran .salut {
+  position: absolute;
+  top: 16px;
+  left: 12px;
+  padding: 8px 12px;
+  border-radius: 16px;
+  background: var(--ecran-carte);
+  color: var(--ecran-encre);
+  font: 700 1rem/1.1 var(--titre);
+  box-shadow: 0 2px 8px rgba(61, 44, 30, 0.12);
+}
+.ecran .salut small { display: block; margin-top: 2px; font: 600 0.7rem/1.2 var(--texte); color: var(--ecran-doux); }
+.puce {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px 4px 4px;
+  border-radius: 999px;
+  background: var(--ecran-carte);
+  color: var(--ecran-encre);
+  font: 800 0.68rem/1 var(--texte);
+  box-shadow: 0 2px 6px rgba(61, 44, 30, 0.12);
+}
+.puce i { width: 17px; height: 17px; border-radius: 6px; background: #FDE7D3; }
+/* Le chien dort dans son panier (décor calé à droite) : 36 % de la largeur de l'écran */
+.ecran .panier { position: absolute; left: 61.5%; top: 62.5%; width: 36cqw; height: 23.6cqw; }
+/* Hauteur de l'élément = hauteur de la race (427 px du dessin) à l'échelle de l'ancien dessin fixe */
+.ecran .panier .chien-marionnette { --x: 40%; --sol: 0px; --h: 39cqw; max-width: none; }
+.ecran .panier .zzz { left: 58%; top: -22%; font-size: 4.6cqw; color: #8A6F5C; }
+.feuille {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px 14px 16px;
+  border-radius: 24px 24px 0 0;
+  background: var(--ecran-carte);
+  color: var(--ecran-encre);
+  box-shadow: 0 -4px 14px rgba(61, 44, 30, 0.1);
+}
+.feuille b.titre-feuille { display: block; font: 700 0.95rem/1.1 var(--titre); color: var(--ecran-encre); margin-bottom: 8px; }
+.anneaux-ecran { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; text-align: center; }
+.anneaux-ecran svg { width: 58px; height: 58px; margin-inline: auto; }
+.anneaux-ecran b { display: block; font: 800 0.78rem/1.2 var(--texte); color: var(--ecran-encre); font-variant-numeric: tabular-nums; }
+.anneaux-ecran span { font-size: 0.66rem; color: var(--ecran-doux); }
+.piste-ecran { stroke: var(--ecran-piste); }
+
+/* ─── Anneaux : pleins au repos, ils se remplissent à l'arrivée à l'écran ─ */
+.anneau-v { stroke-dasharray: var(--v) 163.36; }
+@keyframes remplir { from { stroke-dasharray: 0 163.36; } }
+@media (prefers-reduced-motion: no-preference) {
+  .remplir .anneau-v { animation: remplir 1600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .remplir .anneau-v.a2 { animation-delay: 180ms; }
+  .remplir .anneau-v.a3 { animation-delay: 360ms; }
+}
+.trois { display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .trois { grid-template-columns: repeat(3, 1fr); } }
+.famille {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 16px;
+  align-items: center;
+  padding: 20px;
+  border-radius: var(--rayon);
+  background: var(--carte);
+  box-shadow: var(--ombre);
+}
+.famille svg { width: 84px; height: 84px; grid-row: span 2; }
+.famille h3 { font-size: 1.35rem; align-self: end; }
+.famille .nom-famille { font: 800 0.75rem/1.2 var(--texte); letter-spacing: 0.08em; text-transform: uppercase; align-self: start; }
+.famille.physique .nom-famille { color: var(--physique-texte); }
+.famille.mental .nom-famille { color: var(--mental-texte); }
+.famille.social .nom-famille { color: var(--social-texte); }
+.famille p { grid-column: 1 / -1; color: var(--encre-douce); margin-top: 6px; }
+.piste { stroke: var(--piste); }
+.garde-fous { margin-top: 24px; color: var(--encre-douce); }
+
+/* ─── Pièces de la maison ─────────────────────────────────────────── */
+.pieces { display: grid; gap: 20px; grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+  .pieces { grid-template-columns: repeat(2, 1fr); }
+  .piece.large { grid-column: span 2; }
+}
+@media (min-width: 1000px) { .pieces { grid-template-columns: repeat(3, 1fr); } .piece.large { grid-column: span 2; } }
+.piece { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--rayon); background: var(--carte); box-shadow: var(--ombre); }
+.fenetre { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--surface); container-type: size; }
+.fenetre .decor { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: var(--decor-filtre); }
+.piece-texte { display: grid; gap: 8px; padding: 18px 20px 22px; min-width: 0; align-content: start; }
+.lieu { font: 800 0.75rem/1.2 var(--texte); letter-spacing: 0.08em; text-transform: uppercase; color: var(--sauge-texte); }
+.piece-texte p { color: var(--encre-douce); }
+@media (min-width: 640px) {
+  .piece.large { flex-direction: row; }
+  .piece.large .fenetre { flex: 0 0 48%; aspect-ratio: auto; min-height: 320px; }
+  .piece.large .fenetre .decor { position: absolute; inset: 0; }
+  .piece.large .piece-texte { align-content: center; padding: 28px; }
+}
+
+/* ─── Rencontres : un quartier dessiné avec ses chiens ────────────── */
+.rencontres-grille { display: grid; gap: 32px; align-items: start; }
+@media (min-width: 960px) { .rencontres-grille { grid-template-columns: 0.9fr 1.1fr; } }
+.rencontres-grille .entete-section { margin: 0; }
+.carte-quartier { margin: 0; display: grid; gap: 12px; }
+.quartier {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--rayon);
+  box-shadow: var(--ombre);
+  background: var(--surface);
+  container-type: inline-size;
+}
+.quartier > img, .quartier > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.zone { fill: var(--sauge); fill-opacity: 0.2; stroke: var(--sauge-texte); stroke-width: 3; stroke-dasharray: 10 7; }
+.zone.moi { fill: var(--orange); fill-opacity: 0.16; stroke: var(--orange-fond); stroke-width: 4; stroke-dasharray: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .zone.moi { stroke: var(--orange); } }
+.quartier .chien-marionnette { z-index: 2; }
+.etiquette {
+  position: absolute;
+  translate: -50% -50%;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--orange-fond);
+  color: #fff;
+  font: 800 clamp(0.62rem, 1.7cqw, 0.8rem)/1.3 var(--texte);
+  white-space: nowrap;
+}
+.echelle { position: absolute; left: 3%; bottom: 4.5%; display: grid; gap: 2px; font: 800 clamp(0.62rem, 1.6cqw, 0.78rem)/1 var(--texte); color: var(--encre); }
+.echelle i { display: block; width: 24.85cqw; height: 7px; border: 2px solid currentColor; border-top: 0; }
+.echelle span { padding: 2px 6px; border-radius: 6px; background: var(--verre); justify-self: start; }
+.ensemble { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; padding: 12px; border-radius: 18px; background: var(--carte); box-shadow: var(--ombre); }
+.ensemble .vignette { position: relative; width: clamp(112px, 30vw, 150px); aspect-ratio: 1; overflow: hidden; border-radius: 50%; }
+.ensemble .vignette > img, .ensemble .vignette > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rayon { fill: var(--sauge); fill-opacity: 0.12; stroke: var(--sauge-texte); stroke-width: 5; stroke-dasharray: 14 9; }
+.ensemble p { font-size: 0.92rem; color: var(--encre-douce); }
+.credit { font-size: 0.8rem; color: var(--encre-douce); }
+.credit a { color: inherit; }

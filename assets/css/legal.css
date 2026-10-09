@@ -1,0 +1,38 @@
+/* Pages de texte : légales, 404, confirmation d'adresse, relecture (aperçu). */
+.page-texte { padding-block: clamp(32px, 6vw, 72px) clamp(48px, 7vw, 96px); }
+.page-texte .conteneur { max-width: 780px; display: grid; gap: 14px; }
+.page-texte h1 { margin-bottom: 6px; }
+.page-texte h2 { margin-top: 22px; font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem); }
+.page-texte p, .page-texte li { color: var(--encre); }
+.page-texte ol, .page-texte ul { display: grid; gap: 8px; padding-left: 1.3em; margin: 0; }
+.page-texte .maj { color: var(--encre-douce); font-size: 0.92rem; }
+.page-texte .lien { font: inherit; }
+
+/* Passage encore inconnu : surligné dans l'aperçu, bloquant pour la mise en ligne */
+.a-completer { padding: 0 4px; border-radius: 4px; background: #FEF08A; color: #3D2C1E; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+/* Mentions de l'aperçu seulement (retirées de dist/) */
+.note-apercu { padding: 10px 14px; border-left: 4px solid #CA8A04; border-radius: 6px; background: var(--surface); color: var(--encre-douce); font-size: 0.9rem; }
+
+/* 404 et confirmation : texte et chien posé dans son décor */
+.page-courte .conteneur { max-width: 980px; }
+.page-courte .deux { align-items: center; }
+.page-courte .fenetre { border-radius: var(--rayon); box-shadow: var(--ombre); }
+.page-courte .fenetre .chien-marionnette { --h: 50%; --sol: 8%; }
+
+/* Relecture (aperçu seulement) : lisible sur téléphone */
+.relecture h2 { margin-top: 32px; padding-top: 12px; border-top: 2px solid var(--ligne); }
+.relecture .fiche { display: grid; gap: 8px; padding: 16px 18px; border-radius: 16px; background: var(--carte); box-shadow: var(--ombre); }
+.relecture .fiche h3 { font-size: 1rem; }
+.relecture .fiche code, .relecture .a-regler code { font-size: 0.85em; overflow-wrap: anywhere; }
+.relecture dl { display: grid; gap: 8px; margin: 0; }
+.relecture .ligne { display: grid; gap: 2px; }
+.relecture dt { font: 800 0.72rem/1.2 var(--texte); letter-spacing: 0.06em; text-transform: uppercase; color: var(--encre-douce); }
+.relecture dd { margin: 0; overflow-wrap: anywhere; }
+.relecture .v1 dd { color: var(--encre-douce); }
+.relecture .final dd { font-weight: 700; }
+.relecture .pourquoi dd { color: var(--encre-douce); font-size: 0.95rem; }
+@media (min-width: 700px) { .relecture .ligne { grid-template-columns: 7.5em 1fr; gap: 12px; } }
+.lien-relecture { font-size: 0.85rem; }
+
+.page-texte button.lien { padding: 0; border: 0; background: none; color: var(--orange-texte); font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; }
+p > .note-apercu { display: inline-block; margin-top: 4px; padding: 2px 8px; }

@@ -1,45 +1,543 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-page="maitres" data-racine="/">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pawer — suivi d'activité de votre chien</title>
-<meta name="description" content="Balades, jeux, éducation et carnet de santé : suivez la semaine de votre chien avec Pawer.">
-<style>
-:root { color-scheme: light dark; --ink: #2b211a; --soft: #6b5d52; --ground: #fff8f0; --card: #ffffff; --line: #eadfd3; --accent: #b4500e; }
-@media (prefers-color-scheme: dark) { :root { --ink: #f4ebe2; --soft: #c2b3a6; --ground: #1e1611; --card: #2a2019; --line: #43352b; --accent: #ffa35c; } }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ground); color: var(--ink); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-main { max-width: 44rem; margin: 0 auto; padding: 3rem 1rem 4rem; }
-h1 { font-size: 2.4rem; line-height: 1.1; margin: 0 0 0.6rem; }
-.lead { font-size: 1.2rem; color: var(--soft); margin: 0 0 2rem; }
-ul { padding-left: 1.2rem; }
-li { margin: 0.35rem 0; }
-.store { display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.3rem; border-radius: 999px; background: var(--accent); color: #fff; text-decoration: none; font-weight: 600; }
-@media (prefers-color-scheme: dark) { .store { color: #1e1611; } }
-nav { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; }
-a { color: var(--accent); }
-footer { margin-top: 1.5rem; color: var(--soft); font-size: 0.9rem; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pawer : application gratuite de suivi pour votre chien</title>
+<meta name="description" content="Balades mesurées, jeux d'intérieur, éducation, carnet de santé et rapport pour le vétérinaire. Pawer est gratuit, sans publicité, sur Android.">
+<link rel="canonical" href="https://pawer.studiohlf.com/">
+<link rel="alternate" hreflang="fr" href="https://pawer.studiohlf.com/">
+<link rel="alternate" hreflang="x-default" href="https://pawer.studiohlf.com/">
+<meta name="theme-color" content="#FFF8F0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1E1611" media="(prefers-color-scheme: dark)">
+<meta name="pawer-ga" content="G-XKE6YXJK5M">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pawer">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Pawer : application gratuite de suivi pour votre chien">
+<meta property="og:description" content="Balades mesurées, jeux d'intérieur, éducation, carnet de santé et rapport pour le vétérinaire. Pawer est gratuit, sans publicité, sur Android.">
+<meta property="og:url" content="https://pawer.studiohlf.com/">
+<meta property="og:image" content="https://pawer.studiohlf.com/og-image-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de Pawer : le berger australien de l'application, tête penchée, au-dessus d'une pastille orange">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pawer : application gratuite de suivi pour votre chien">
+<meta name="twitter:description" content="Balades mesurées, jeux d'intérieur, éducation, carnet de santé et rapport pour le vétérinaire. Pawer est gratuit, sans publicité, sur Android.">
+<meta name="twitter:image" content="https://pawer.studiohlf.com/og-image-1200x630.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/polices/nunito-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/polices/baloo-2-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/chiens.css">
+<link rel="stylesheet" href="/assets/css/maitres.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebSite",
+   "@id": "https://pawer.studiohlf.com/#site",
+   "url": "https://pawer.studiohlf.com/",
+   "name": "Pawer",
+   "inLanguage": "fr",
+   "publisher": {
+    "@id": "https://pawer.studiohlf.com/#editeur"
+   }
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://pawer.studiohlf.com/#editeur",
+   "name": "Studio HLF",
+   "url": "https://pawer.studiohlf.com/",
+   "email": "hugolefort97@gmail.com",
+   "founder": {
+    "@type": "Person",
+    "name": "Hugo Lefort"
+   },
+   "logo": {
+    "@type": "ImageObject",
+    "url": "https://pawer.studiohlf.com/icon-512.png",
+    "width": 512,
+    "height": 512
+   },
+   "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "FR"
+   }
+  },
+  {
+   "@type": "MobileApplication",
+   "@id": "https://pawer.studiohlf.com/#application",
+   "name": "Pawer",
+   "description": "Pawer est une application Android gratuite et sans publicité, éditée par Studio HLF (Hugo Lefort, France), pour suivre la semaine de son chien : balades mesurées par GPS, jeux d'intérieur, éducation, carnet de santé avec rapport pour le vétérinaire et rencontres entre maîtres.",
+   "operatingSystem": "Android 7.0 ou plus récent",
+   "applicationCategory": "LifestyleApplication",
+   "inLanguage": "fr",
+   "isAccessibleForFree": true,
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+   },
+   "installUrl": "https://play.google.com/store/apps/details?id=com.studiohlf.pawer",
+   "url": "https://pawer.studiohlf.com/",
+   "publisher": {
+    "@id": "https://pawer.studiohlf.com/#editeur"
+   },
+   "author": {
+    "@id": "https://pawer.studiohlf.com/#editeur"
+   },
+   "image": "https://pawer.studiohlf.com/icon-512.png",
+   "featureList": [
+    "Balades mesurées par GPS : durée, distance et trajet",
+    "Jeux d'intérieur et séances de sport",
+    "18 ordres d'éducation en trois niveaux, avec leur source",
+    "Carnet de santé : pesées, poids cible, vaccins, vermifuges, rendez-vous, rappels, journal de comportement",
+    "Rapport PDF pour le vétérinaire",
+    "Rencontres entre maîtres (18 ans et plus) : zone d'environ 300 m, rayon de 5 km",
+    "Sans publicité, utilisable sans réseau, données hébergées en Europe (Francfort)"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://pawer.studiohlf.com/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Pawer est-il gratuit ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui. Une formule Pawer+ viendra plus tard, avec les programmes guidés et du contenu en plus. Le carnet, les balades, le rapport pour le vétérinaire et les rencontres resteront gratuits."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Comment Pawer mesure-t-il une balade ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Avec le GPS de votre téléphone. Aucun boîtier à acheter."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Et sur iPhone ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas pour l'instant. Pawer demande Android 7 ou plus récent."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Faut-il du réseau ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pas pour le suivi. Vos saisies partent dès que le réseau revient. L'inscription, la connexion et les rencontres en demandent."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Comment fonctionnent les rencontres entre maîtres ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Réservé aux 18 ans et plus."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Mon chien n'est pas d'une des huit races dessinées. Apparaît-il quand même ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui. S'il ressemble à l'une d'elles, il prend son dessin. Sinon, il apparaît en chien blanc animé, comme celui-ci."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Comment supprimer mon compte ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Dans l'application : Profil, Paramètres, « Supprimer mon compte ». Si vous n'avez plus l'application, la page Supprimer mon compte explique comment demander la suppression par courriel."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Accueil",
+     "item": "https://pawer.studiohlf.com/"
+    }
+   ]
+  }
+ ]
+}
+</script>
 </head>
 <body>
-<main>
-  <h1>Pawer</h1>
-  <p class="lead">Balades, jeux, éducation et carnet de santé : suivez la semaine de votre chien.</p>
-  <ul>
-    <li>Les balades suivies au GPS, même écran éteint.</li>
-    <li>Les jeux, le sport et les exercices d'éducation, avec points, séries et badges.</li>
-    <li>Le carnet de santé : pesées, rendez-vous chez le vétérinaire, rappels.</li>
-    <li>Des rencontres entre maîtres du quartier, si vous le choisissez.</li>
-  </ul>
-  <a class="store" href="https://play.google.com/store/apps/details?id=com.studiohlf.pawer">Pawer sur Google Play</a>
-  <nav>
-    <a href="confidentialite.html">Confidentialité</a>
-    <a href="suppression-compte.html">Supprimer son compte</a>
-    <a href="regles-communaute.html">Règles de la communauté</a>
-    <a href="mentions-legales.html">Mentions légales</a>
-  </nav>
-  <footer>Pawer est éditée par Hugo Lefort, entrepreneur individuel (EI).</footer>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="conteneur">
+    <a class="marque" href="/" aria-label="Pawer, page d'accueil">
+      <picture class="seul-clair"><source srcset="/assets/img/logo/logotype@2x.webp" type="image/webp"><img src="/assets/img/logo/logotype@2x.png" alt="Pawer" width="220" height="112"></picture>
+      <picture class="seul-sombre"><source srcset="/assets/img/logo/logotype-sombre@2x.webp" type="image/webp"><img src="/assets/img/logo/logotype-sombre@2x.png" alt="Pawer" width="220" height="112"></picture>
+    </a>
+    <nav class="nav" aria-label="Pages du site">
+      <a href="/" data-nav="maitres" aria-current="page">Maîtres</a>
+      <a href="/pros/" data-nav="pros">Vétérinaires et éducateurs</a>
+      <a href="/partenaires/" data-nav="partenaires">Partenaires</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="ouverture">
+    <div class="conteneur">
+      <div class="ouverture-texte">
+        <p class="surtitre">Application gratuite de suivi du chien</p>
+        <h1>Suivez la semaine de votre chien, sans collier GPS</h1>
+        <p class="chapeau">Balades mesurées par le téléphone, jeux d'intérieur, 18 ordres d'éducation, carnet de santé. Vous voyez à tout moment où en est sa semaine.</p>
+        <div class="actions">
+          <a class="badge-play" href="https://play.google.com/store/apps/details?id=com.studiohlf.pawer" data-emplacement="ouverture"><img src="/assets/img/google-play-fr.png" alt="Disponible sur Google Play" width="646" height="250"></a>
+          <a class="lien-fleche" href="#maison">Faire le tour de la maison</a>
+        </div>
+        <ul class="reperes" aria-label="En bref">
+          <li>Gratuit</li>
+          <li>Sans publicité</li>
+          <li>Saisies gardées sans réseau</li>
+          <li>Données hébergées en Europe</li>
+        </ul>
+      </div>
+
+      <div class="scene-telephone">
+        <span class="coucou" data-anim aria-hidden="true"><img src="/assets/img/logo/coucou@2x.webp" alt="" width="400" height="400"></span>
+        <div class="telephone" role="img" aria-label="L'écran d'accueil de Pawer : le salon, le chien qui dort dans son panier et les trois anneaux de la semaine">
+          <div class="ecran">
+            <img class="decor" src="/assets/img/decors/salon.webp" alt="" width="768" height="1367">
+            <div class="salut">Bonjour Julien<small>Django fait la sieste</small></div>
+            <span class="puce" style="left:10px;top:30%"><i></i>Sorties</span>
+            <span class="puce" style="left:38%;top:24%"><i></i>Suivi</span>
+            <span class="puce" style="right:10px;top:17%"><i></i>Santé</span>
+            <span class="puce" style="right:10px;top:38%"><i></i>Rencontres</span>
+            <span class="puce" style="left:10px;top:47%"><i></i>Jeux</span>
+            <div class="panier">
+              <div class="chien-marionnette" data-race="berger-australien" data-pose="endormi" aria-hidden="true">
+                <img src="/assets/img/chiens/berger-australien-endormi.webp" alt="" width="383" height="263">
+              </div>
+              <span class="zzz" aria-hidden="true"><span>z</span><span>z</span><span>z</span></span>
+            </div>
+            <div class="feuille" data-anneaux>
+              <b class="titre-feuille">Ma semaine</b>
+              <div class="anneaux-ecran">
+                <div>
+                  <svg viewBox="0 0 64 64"><circle class="piste-ecran" cx="32" cy="32" r="26" fill="none" stroke-width="7"/><circle class="anneau-v" cx="32" cy="32" r="26" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--physique);--v:114.35" transform="rotate(-90 32 32)"/></svg>
+                  <b>126 / 180</b><span>Physique</span>
+                </div>
+                <div>
+                  <svg viewBox="0 0 64 64"><circle class="piste-ecran" cx="32" cy="32" r="26" fill="none" stroke-width="7"/><circle class="anneau-v a2" cx="32" cy="32" r="26" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--mental);--v:104.55" transform="rotate(-90 32 32)"/></svg>
+                  <b>64 / 100</b><span>Mental</span>
+                </div>
+                <div>
+                  <svg viewBox="0 0 64 64"><circle class="piste-ecran" cx="32" cy="32" r="26" fill="none" stroke-width="7"/><circle class="anneau-v a3" cx="32" cy="32" r="26" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--social);--v:81.68" transform="rotate(-90 32 32)"/></svg>
+                  <b>45 / 90</b><span>Social</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section teintee" id="semaine">
+    <div class="conteneur">
+      <div class="entete-section">
+        <p class="surtitre">Physique, mental, social</p>
+        <h2>Trois anneaux pour une semaine équilibrée</h2>
+        <p class="chapeau">Chaque activité rapporte des points, parfois dans plusieurs familles. Une balade de 30 à 60 minutes au parc donne 15 points physiques, 8 mentaux et 8 sociaux.</p>
+      </div>
+      <div class="trois" data-anneaux>
+        <article class="famille physique">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="piste" cx="32" cy="32" r="26" fill="none" stroke-width="7"/><circle class="anneau-v" cx="32" cy="32" r="26" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--physique);--v:114.35" transform="rotate(-90 32 32)"/></svg>
+          <span class="nom-famille">Physique</span>
+          <h3>Balades et sport</h3>
+          <p>Les balades mesurées et les séances de canicross, de randonnée ou d'agility.</p>
+        </article>
+        <article class="famille mental">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="piste" cx="32" cy="32" r="26" fill="none" stroke-width="7"/><circle class="anneau-v a2" cx="32" cy="32" r="26" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--mental);--v:104.55" transform="rotate(-90 32 32)"/></svg>
+          <span class="nom-famille">Mental</span>
+          <h3>Jeux et éducation</h3>
+          <p>Les jeux d'intérieur, le flair et les exercices d'éducation, qui font travailler sa tête.</p>
+        </article>
+        <article class="famille social">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="piste" cx="32" cy="32" r="26" fill="none" stroke-width="7"/><circle class="anneau-v a3" cx="32" cy="32" r="26" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--social);--v:81.68" transform="rotate(-90 32 32)"/></svg>
+          <span class="nom-famille">Social</span>
+          <h3>Moments partagés</h3>
+          <p>Le temps passé avec d'autres chiens et d'autres personnes, dehors ou à la maison.</p>
+        </article>
+      </div>
+      <p class="garde-fous">Une balade ou une séance de sport compte dès 5 minutes, et certaines activités ont un plafond par jour. Quatre nouveaux défis arrivent chaque lundi. Il y a 25 badges en tout.</p>
+    </div>
+  </section>
+
+  <section class="section" id="maison">
+    <div class="conteneur">
+      <div class="entete-section">
+        <p class="surtitre">Une maison pour votre chien</p>
+        <h2>Chaque partie de l'application est une pièce</h2>
+        <p class="chapeau">Votre chien y apparaît en dessin. Huit races ont le leur, en six poses. Une race proche prend le dessin le plus ressemblant, les autres un chien blanc animé.</p>
+      </div>
+      <div class="pieces">
+        <article class="piece">
+          <div class="fenetre">
+            <img class="decor" src="/assets/img/decors/salon.webp" alt="" width="768" height="1367" loading="lazy">
+            <div class="chien-marionnette" data-race="berger-australien" data-pose="assis" aria-hidden="true" style="--h: 54%; --sol: 7%">
+              <img src="/assets/img/chiens/berger-australien-assis.webp" alt="" width="283" height="415" loading="lazy">
+            </div>
+          </div>
+          <div class="piece-texte">
+            <p class="lieu">Le salon</p>
+            <h3>Le bilan du jour et de la semaine</h3>
+            <p>Vos anneaux, votre série de jours actifs et les rappels de santé à venir. Une bulle signale un rappel prévu dans les 7 jours ou déjà en retard. Badges et niveaux obtenus restent dans un centre de notifications.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <div class="fenetre">
+            <img class="decor" src="/assets/img/decors/parc.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 55%">
+            <div class="chien-marionnette" data-race="labrador" data-pose="marche" aria-hidden="true" style="--h: 50%; --sol: 8%">
+              <img src="/assets/img/chiens/labrador-marche.webp" alt="" width="515" height="369" loading="lazy">
+            </div>
+          </div>
+          <div class="piece-texte">
+            <p class="lieu">Les balades</p>
+            <h3>Votre téléphone mesure la balade</h3>
+            <p>Vous lancez la balade et le téléphone mesure la durée, la distance et le trajet. Vous l'arrêtez en rentrant, et elle s'ajoute à vos anneaux.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <div class="fenetre">
+            <img class="decor" src="/assets/img/decors/coin-jeux.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 60%">
+            <div class="chien-marionnette" data-race="golden-retriever" data-pose="saut" data-decalage="400" aria-hidden="true" style="--h: 50%; --sol: 7%">
+              <img src="/assets/img/chiens/golden-retriever-saut.webp" alt="" width="409" height="452" loading="lazy">
+            </div>
+          </div>
+          <div class="piece-texte">
+            <p class="lieu">Le coin jeux</p>
+            <h3>Des jeux d'intérieur pour les jours de pluie</h3>
+            <p>De quoi occuper votre chien en appartement : jeux de flair, de papouilles et d'occupation, chacun se rejoue une fois par jour. Dehors, des séances de sport à faire ensemble.</p>
+          </div>
+        </article>
+        <article class="piece">
+          <div class="fenetre">
+            <img class="decor" src="/assets/img/decors/terrain-education.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 58%">
+            <div class="chien-marionnette" data-race="berger-allemand" data-pose="assis" data-decalage="1700" aria-hidden="true" style="--h: 54%; --sol: 7%">
+              <img src="/assets/img/chiens/berger-allemand-assis.webp" alt="" width="300" height="436" loading="lazy">
+            </div>
+          </div>
+          <div class="piece-texte">
+            <p class="lieu">Le terrain d'éducation</p>
+            <h3>18 ordres en trois niveaux, sources citées</h3>
+            <p>Assis, couché, rappel, pas bouger, puis la marche au pied. Chaque ordre cite sa source : Société Centrale Canine, AKC, Kennel Club, FCI ou étude publiée. Vous validez chacun au plus tôt 12 heures après l'avoir commencé.</p>
+          </div>
+        </article>
+        <article class="piece large">
+          <div class="fenetre">
+            <img class="decor" src="/assets/img/decors/coin-sante.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 52%">
+            <div class="chien-marionnette" data-race="chihuahua" data-pose="assis" data-decalage="2600" aria-hidden="true" style="--h: min(50%, 135px); --sol: 7%">
+              <img src="/assets/img/chiens/chihuahua-assis.webp" alt="" width="352" height="439" loading="lazy">
+            </div>
+          </div>
+          <div class="piece-texte">
+            <p class="lieu">Le carnet de santé</p>
+            <h3>Un carnet de santé prêt pour le vétérinaire</h3>
+            <p>Pesées, poids cible, vaccins, vermifuges et rendez-vous, avec leurs rappels. Le soir, si vous l'activez, une notification vous propose de remplir le journal de comportement. Avant la visite, vous partagez un rapport PDF, sur quatre semaines par défaut.</p>
+            <p><a href="/pros/">Voir ce que contient le rapport</a></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section teintee" id="rencontres">
+    <div class="conteneur rencontres-grille">
+      <div class="entete-section">
+        <p class="surtitre">Rencontres entre maîtres, 18 ans et plus</p>
+        <h2>Des maîtres autour de vous, sans montrer votre position exacte</h2>
+        <ul class="liste-points">
+          <li>Vous choisissez d'apparaître ou non. Tant que les rencontres restent désactivées, personne ne vous voit.</li>
+          <li>Vous placez vous-même une zone d'environ 300 m, par exemple le parc de vos sorties. Les autres voient cette zone, jamais votre position exacte.</li>
+          <li>Vous voyez les maîtres qui ont fait le même choix, dans un rayon de 5 km.</li>
+          <li>Une fiche montre un prénom et le chien : nom, race, gabarit, énergie, tranche d'âge. Ni photo ni messagerie.</li>
+          <li>Depuis chaque fiche, vous pouvez signaler ou bloquer un maître. Vous pouvez quitter la carte à tout moment.</li>
+          <li class="a-venir"><span>Choisir les chiens que vous croisez selon le gabarit, l'énergie, l'âge, le sexe et la stérilisation, depuis le Profil. <span class="bientot">Bientôt</span></span></li>
+        </ul>
+      </div>
+      <figure class="carte-quartier">
+        <div class="quartier" data-anim>
+          <img class="seul-clair" src="/assets/carte/quartier-clair.webp" alt="Carte du quartier du Luxembourg, à Paris, avec cinq zones de rencontre d'environ 300 m de côté et un chien sur chacune" width="1200" height="800" loading="lazy">
+          <img class="seul-sombre" src="/assets/carte/quartier-sombre.webp" alt="Carte du quartier du Luxembourg, à Paris, avec cinq zones de rencontre d'environ 300 m de côté et un chien sur chacune" width="1200" height="800" loading="lazy">
+          <svg viewBox="0 0 1200 800" aria-hidden="true">
+            <rect class="zone" x="25.9" y="40.9" width="298.2" height="298.2" rx="18"/>
+            <rect class="zone" x="835.9" y="65.9" width="298.2" height="298.2" rx="18"/>
+            <rect class="zone" x="810.9" y="475.9" width="298.2" height="298.2" rx="18"/>
+            <rect class="zone" x="35.9" y="490.9" width="298.2" height="298.2" rx="18"/>
+            <rect class="zone moi" x="394.7" y="305.5" width="298.2" height="298.2" rx="18"/>
+          </svg>
+          <div class="chien-marionnette sur-carte" data-race="golden-retriever" data-pose="saut" data-decalage="700" aria-hidden="true" style="--x: 14.6%; --sol: 67.5%; --h: 10cqw">
+            <img src="/assets/img/chiens/golden-retriever-saut.webp" alt="" width="409" height="452" loading="lazy">
+          </div>
+          <div class="chien-marionnette sur-carte" data-race="teckel" data-pose="curieux" data-decalage="1300" aria-hidden="true" style="--x: 82.1%; --sol: 64.4%; --h: 8.4cqw">
+            <img src="/assets/img/chiens/teckel-curieux.webp" alt="" width="285" height="336" loading="lazy">
+          </div>
+          <div class="chien-marionnette sur-carte" data-race="bouledogue-francais" data-pose="curieux" data-decalage="2100" aria-hidden="true" style="--x: 80%; --sol: 13.1%; --h: 8.2cqw">
+            <img src="/assets/img/chiens/bouledogue-francais-curieux.webp" alt="" width="292" height="408" loading="lazy">
+          </div>
+          <div class="chien-marionnette sur-carte" data-race="labrador" data-pose="assis" data-decalage="3100" aria-hidden="true" style="--x: 15.4%; --sol: 11.25%; --h: 10cqw">
+            <img src="/assets/img/chiens/labrador-assis.webp" alt="" width="341" height="418" loading="lazy">
+          </div>
+          <div class="chien-marionnette sur-carte" data-race="berger-australien" data-pose="curieux" data-decalage="900" aria-hidden="true" style="--x: 45.33%; --sol: 34.4%; --h: 9.6cqw">
+            <img src="/assets/img/chiens/berger-australien-curieux.webp" alt="" width="266" height="427" loading="lazy">
+          </div>
+          <span class="etiquette" style="left:45.33%; top:38.2%">Votre zone</span>
+          <span class="echelle" style="left:36%"><i></i><span>300 m</span></span>
+        </div>
+        <div class="ensemble">
+          <span class="vignette">
+            <img class="seul-clair" src="/assets/carte/ensemble-clair.webp" alt="" width="560" height="560" loading="lazy">
+            <img class="seul-sombre" src="/assets/carte/ensemble-sombre.webp" alt="" width="560" height="560" loading="lazy">
+            <svg viewBox="0 0 560 560" aria-hidden="true">
+              <circle class="rayon" cx="280" cy="280" r="243.3"/>
+              <rect x="253.3" y="257.7" width="58.8" height="39.2" fill="none" stroke="#C2410C" stroke-width="5"/>
+            </svg>
+          </span>
+          <p>Le même quartier, vu de plus haut : le cercle montre le rayon de 5 km dans lequel vous voyez les autres maîtres, et le cadre orange la carte ci-dessus.</p>
+        </div>
+        <figcaption class="credit">Illustration à l'échelle : chaque carré fait environ 300 m de côté. Fond de carte Protomaps, &copy; <a href="https://www.openstreetmap.org/copyright">Contributeurs OpenStreetMap</a>.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" id="donnees">
+    <div class="conteneur engagements">
+      <div class="encart sauge">
+        <h3>Ce que Pawer ne fait pas</h3>
+        <p>L'application ne pose aucun diagnostic. Pour toute question sur la santé de votre chien, voyez votre vétérinaire. Les points et les repères sont indicatifs. Pawer ne retrouve pas non plus un chien perdu.</p>
+      </div>
+      <div class="encart">
+        <h3>Vos données</h3>
+        <ul>
+          <li>Dans l'application, pas de publicité ni d'outil de mesure d'audience.</li>
+          <li>La position n'est demandée que pendant l'utilisation, pour mesurer une balade que vous avez lancée ou pour placer votre zone de rencontres.</li>
+          <li>Votre compte est hébergé en Europe, à Francfort.</li>
+          <li>La photo de profil reste sur votre téléphone.</li>
+          <li>Vous supprimez votre compte depuis l'application : Profil, Paramètres, « Supprimer mon compte ». <a href="/suppression-compte.html">Toutes les façons de le faire</a>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section teintee" id="questions">
+    <div class="conteneur">
+      <div class="entete-section">
+        <p class="surtitre">Questions fréquentes</p>
+        <h2>Avant d'installer</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Pawer est-il gratuit ?</summary>
+          <div class="reponse"><p>Oui. Une formule Pawer+ viendra plus tard, avec les programmes guidés et du contenu en plus. Le carnet, les balades, le rapport pour le vétérinaire et les rencontres resteront gratuits.</p></div>
+        </details>
+        <details>
+          <summary>Comment Pawer mesure-t-il une balade ?</summary>
+          <div class="reponse"><p>Avec le GPS de votre téléphone. Aucun boîtier à acheter.</p></div>
+        </details>
+        <details>
+          <summary>Et sur iPhone ?</summary>
+          <div class="reponse"><p>Pas pour l'instant. Pawer demande Android 7 ou plus récent.</p></div>
+        </details>
+        <details>
+          <summary>Faut-il du réseau ?</summary>
+          <div class="reponse"><p>Pas pour le suivi. Vos saisies partent dès que le réseau revient. L'inscription, la connexion et les rencontres en demandent.</p></div>
+        </details>
+        <details>
+          <summary>Comment fonctionnent les rencontres entre maîtres ?</summary>
+          <div class="reponse"><p>Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Réservé aux 18 ans et plus.</p></div>
+        </details>
+        <details>
+          <summary>Mon chien n'est pas d'une des huit races dessinées. Apparaît-il quand même ?</summary>
+          <div class="reponse">
+            <p>Oui. S'il ressemble à l'une d'elles, il prend son dessin. Sinon, il apparaît en chien blanc animé, comme celui-ci.</p>
+            <span class="pawer-chien-blanc" data-anim data-pawer-lottie="/assets/lottie/dog-one.json" aria-hidden="true">
+              <span class="pawer-chien-blanc__cadre">
+                <img class="pawer-chien-blanc__repos" src="/assets/lottie/dog-one-repos.svg" alt="" loading="lazy">
+                <span class="pawer-chien-blanc__compo"></span>
+              </span>
+            </span>
+          </div>
+        </details>
+        <details>
+          <summary>Comment supprimer mon compte ?</summary>
+          <div class="reponse"><p>Dans l'application : Profil, Paramètres, « Supprimer mon compte ». Si vous n'avez plus l'application, la page <a href="/suppression-compte.html">Supprimer mon compte</a> explique comment demander la suppression par courriel.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="appel" id="installer">
+    <div class="conteneur">
+      <div class="appel-boite avec-chien">
+        <div class="appel-texte">
+          <h2>Commencez par votre prochaine sortie ensemble</h2>
+          <p class="chapeau">Pawer est gratuit. Il s'installe depuis Google Play et demande Android 7 ou plus récent.</p>
+          <div class="actions">
+            <img class="icone-appli" src="/assets/img/logo/icone-app@2x.webp" alt="" width="104" height="104" loading="lazy">
+            <a class="badge-play" href="https://play.google.com/store/apps/details?id=com.studiohlf.pawer" data-emplacement="appel"><img src="/assets/img/google-play-fr.png" alt="Disponible sur Google Play" width="646" height="250" loading="lazy"></a>
+          </div>
+          <p class="doux petit">Vous voulez tester Pawer avant sa sortie sur Google Play ? Écrivez-nous à <a href="mailto:hugolefort97@gmail.com?subject=Tester%20Pawer" data-sujet="testeur">hugolefort97@gmail.com</a>.</p>
+        </div>
+        <div class="cadre-chien large">
+          <div class="chien-marionnette" data-race="teckel" data-pose="marche" aria-hidden="true">
+            <img src="/assets/img/chiens/teckel-marche.webp" alt="" width="569" height="281" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
+
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-marque">
+      <picture class="seul-clair"><source srcset="/assets/img/logo/logotype@2x.webp" type="image/webp"><img src="/assets/img/logo/logotype@2x.png" alt="" width="220" height="112" loading="lazy"></picture>
+      <picture class="seul-sombre"><source srcset="/assets/img/logo/logotype-sombre@2x.webp" type="image/webp"><img src="/assets/img/logo/logotype-sombre@2x.png" alt="" width="220" height="112" loading="lazy"></picture>
+      <p class="definition">Pawer est une application Android gratuite et sans publicité, éditée par Studio HLF (Hugo Lefort, France), pour suivre la semaine de son chien : balades mesurées par GPS, jeux d'intérieur, éducation, carnet de santé avec rapport pour le vétérinaire et rencontres entre maîtres.</p>
+      <p>Contact : <a href="mailto:hugolefort97@gmail.com" data-sujet="contact">hugolefort97@gmail.com</a></p>
+    </div>
+    <nav aria-label="Informations légales">
+      <a href="/mentions-legales/">Mentions légales</a>
+      <a href="/confidentialite.html">Confidentialité</a>
+      <a href="/regles-communaute.html">Règles de la communauté</a>
+      <a href="/suppression-compte.html">Supprimer mon compte</a>
+      <a href="/cookies/">Cookies</a>
+      <button type="button" class="lien" data-gerer-cookies>Gérer les cookies</button>
+    </nav>
+    <p class="signature">Pawer, une application Studio HLF</p>
+  </div>
+</footer>
+
+<div class="consentement" id="consentement" role="dialog" aria-labelledby="consentement-titre" aria-describedby="consentement-texte" hidden>
+  <h2 id="consentement-titre">Mesure d'audience</h2>
+  <p id="consentement-texte">Avec votre accord, nous utilisons Google Analytics pour compter les visites et savoir quelles parties du site sont lues. Votre choix est gardé 6 mois. Vous pouvez en changer à tout moment avec le lien « Gérer les cookies », en bas de page. <a href="/cookies/">En savoir plus</a></p>
+  <div class="choix">
+    <button type="button" data-choix="refuse">Refuser</button>
+    <button type="button" data-choix="accepte">Accepter</button>
+  </div>
+</div>
+<script src="/assets/js/marionnettes.js" data-monter defer></script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

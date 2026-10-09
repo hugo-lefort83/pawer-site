@@ -1,0 +1,138 @@
+/* Pawer : chiens du site.
+   Chaque chien est une marionnette de l'application (assets/js/marionnettes.js),
+   le même rig et le même calcul que dans l'appli. Règles :
+   - le chien reste à sa place, posé sur le sol de son cadre (bas de l'élément) ;
+     le cadre (.fenetre, .cadre-chien, .ecran, .quartier) coupe ce qui dépasse ;
+   - AUCUNE animation CSS sur un chien (ni translation, ni scale, ni rotation) :
+     la marionnette porte seule le mouvement, sur place ;
+   - avant le premier dessin, sans WebGL ou sans script, l'image de repli
+     (première image de la boucle, rendue par la marionnette) reste visible ;
+   - mouvement réduit : la marionnette dessine une image fixe.
+
+   Gabarit :
+   <div class="chien-marionnette" data-race="labrador" data-pose="marche" aria-hidden="true" style="--h: 50%; --sol: 8%">
+     <img src="/assets/img/chiens/labrador-marche.webp" alt="" width="…" height="…" loading="lazy">
+   </div>
+   --x : abscisse du centre ; --sol : hauteur du sol depuis le bas du cadre ;
+   --h : hauteur de l'élément (celle de la race, la même pour ses six poses).
+   data-decalage="1200" décale la boucle (ms) de deux chiens de même pose. */
+
+.chien-marionnette {
+  --prop: 1.2;
+  position: absolute;
+  z-index: 1;
+  left: var(--x, 50%);
+  bottom: var(--sol, 7%);
+  height: var(--h, 55%);
+  aspect-ratio: var(--prop);
+  max-width: 100%;
+  translate: -50% 0;
+  line-height: 0;
+  pointer-events: none;
+}
+/* Ombre au sol du repli ; la marionnette dessine la sienne */
+.chien-marionnette::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2.5%;
+  width: 70%;
+  height: 7%;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgb(61 44 30 / 0.22), rgb(61 44 30 / 0));
+}
+.chien-marionnette.marionnette-prete::before { content: none; }
+.chien-marionnette > img { position: absolute; bottom: 0; left: 50%; translate: -50% 0; height: 92%; width: auto; max-width: none; }
+/* Regard vers la gauche, sans déformation : rotation autour de l'axe vertical, jamais scaleX */
+.chien-marionnette.vers-gauche { rotate: y 180deg; }
+
+/*REPLIS*/
+/* Proportion de l'élément par race (largeur / hauteur), écrite par outils/integrer-marionnettes.cjs */
+.chien-marionnette[data-race="berger-allemand"] { --prop: 1.266; }
+.chien-marionnette[data-race="berger-australien"] { --prop: 1.091; }
+.chien-marionnette[data-race="bouledogue-francais"] { --prop: 1.009; }
+.chien-marionnette[data-race="chihuahua"] { --prop: 0.908; }
+.chien-marionnette[data-race="golden-retriever"] { --prop: 1.292; }
+.chien-marionnette[data-race="husky"] { --prop: 1.069; }
+.chien-marionnette[data-race="labrador"] { --prop: 1.166; }
+.chien-marionnette[data-race="teckel"] { --prop: 1.611; }
+/* Hauteur du repli : repliHauteur / hauteur de la race */
+.chien-marionnette[data-race="berger-australien"][data-pose="endormi"] > img { height: 61.6%; }
+.chien-marionnette[data-race="berger-australien"][data-pose="curieux"] > img { height: 100.0%; }
+.chien-marionnette[data-race="berger-australien"][data-pose="assis"] > img { height: 97.2%; }
+.chien-marionnette[data-race="berger-australien"][data-pose="reverence"] > img { height: 74.0%; }
+.chien-marionnette[data-race="berger-australien"][data-pose="saut"] > img { height: 97.9%; }
+.chien-marionnette[data-race="labrador"][data-pose="marche"] > img { height: 81.5%; }
+.chien-marionnette[data-race="labrador"][data-pose="assis"] > img { height: 92.3%; }
+.chien-marionnette[data-race="golden-retriever"][data-pose="saut"] > img { height: 100.0%; }
+.chien-marionnette[data-race="berger-allemand"][data-pose="curieux"] > img { height: 99.3%; }
+.chien-marionnette[data-race="berger-allemand"][data-pose="assis"] > img { height: 100.0%; }
+.chien-marionnette[data-race="chihuahua"][data-pose="curieux"] > img { height: 89.4%; }
+.chien-marionnette[data-race="chihuahua"][data-pose="assis"] > img { height: 87.8%; }
+.chien-marionnette[data-race="teckel"][data-pose="marche"] > img { height: 78.1%; }
+.chien-marionnette[data-race="teckel"][data-pose="curieux"] > img { height: 93.3%; }
+.chien-marionnette[data-race="bouledogue-francais"][data-pose="assis"] > img { height: 89.9%; }
+.chien-marionnette[data-race="bouledogue-francais"][data-pose="curieux"] > img { height: 91.5%; }
+/*/REPLIS*/
+
+/* ─── Cadre sans décor (appel final) : il coupe ce qui dépasse ─────── */
+.cadre-chien { position: relative; overflow: hidden; border-radius: 0 0 var(--rayon) var(--rayon); }
+.appel-boite.avec-chien { padding-bottom: 0; }
+.appel-boite.avec-chien .appel-texte { padding-bottom: 8px; }
+.appel-boite .cadre-chien { justify-self: center; width: min(230px, 62vw); height: 210px; }
+.appel-boite .cadre-chien.large { width: min(340px, 86vw); }
+@media (min-width: 760px) {
+  .appel-boite.avec-chien { grid-template-columns: 1fr auto; align-items: end; }
+  .appel-boite.avec-chien .appel-texte { padding-bottom: clamp(24px, 4vw, 44px); }
+  .appel-boite .cadre-chien { width: 240px; height: 260px; }
+  .appel-boite .cadre-chien.large { width: 340px; }
+}
+.appel-boite .cadre-chien .chien-marionnette { --sol: 12px; --h: 84%; }
+.appel-boite .cadre-chien.large .chien-marionnette { --h: 80%; }
+
+/* « z » du chien qui dort (du texte, pas le chien) : visibles au repos, ils montent si le mouvement est permis */
+.zzz { position: absolute; display: block; pointer-events: none; font: 800 1rem/1 var(--titre); color: var(--ecran-doux); }
+.zzz span { position: absolute; display: block; }
+.zzz span:nth-child(1) { left: 0; top: 18px; font-size: 0.8em; }
+.zzz span:nth-child(2) { left: 9px; top: 6px; font-size: 1em; }
+.zzz span:nth-child(3) { left: 20px; top: -8px; font-size: 1.2em; }
+@keyframes zzz-monte {
+  0% { translate: 0 6px; opacity: 0; }
+  12% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { translate: 16px -30px; opacity: 0; }
+}
+/* Mascotte du logo (pas un chien du site) : elle penche la tête */
+@keyframes coucou {
+  0%, 20% { rotate: 0deg; }
+  25% { rotate: -4deg; }
+  30%, 50% { rotate: 0deg; }
+  55% { rotate: 3deg; }
+  60%, 78% { rotate: 0deg; }
+  82% { rotate: -3deg; }
+  86% { rotate: 2deg; }
+  90%, 100% { rotate: 0deg; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .zzz span { animation: zzz-monte 4800ms ease-out infinite; }
+  .zzz span:nth-child(1) { left: 0; top: 18px; animation-delay: 0s; }
+  .zzz span:nth-child(2) { left: 0; top: 18px; animation-delay: 1600ms; }
+  .zzz span:nth-child(3) { left: 0; top: 18px; animation-delay: 3200ms; }
+  .coucou img { transform-origin: 50% 100%; animation: coucou 8s ease-in-out infinite; }
+}
+
+/* ─── Chien blanc (Lottie de l'application, lu par lottie-web en SVG) ─ */
+.pawer-chien-blanc { --h: 110px; position: relative; display: inline-block; height: var(--h); aspect-ratio: 0.8312; pointer-events: none; flex: none; }
+.pawer-chien-blanc__cadre { position: absolute; inset: -1.5% -8.5% -2.5% -1%; overflow: hidden; }
+.pawer-chien-blanc__compo, .pawer-chien-blanc__repos {
+  position: absolute; display: block; max-width: none;
+  left: -127.151%; top: -41.276%; width: 335.905%; height: 165.36%;
+}
+.pawer-chien-blanc.pawer-lottie-pret .pawer-chien-blanc__repos { visibility: hidden; }
+
+/* ─── Pause hors écran et mouvement réduit ─────────────────────────── */
+.hors-ecran, .hors-ecran *, .hors-ecran *::before, .hors-ecran *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .zzz *, .coucou * { animation: none !important; }
+}

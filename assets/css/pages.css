@@ -1,0 +1,48 @@
+/* Pages pros, partenaires, 404 et confirmation : ouverture, adresse à copier,
+   les chiens (marionnettes) sont dans chiens.css. */
+
+/* ─── Ouverture ─────────────────────────────────────────────────── */
+.ouverture { overflow-x: clip; padding-block: clamp(28px, 6vw, 76px) clamp(44px, 7vw, 96px); }
+.ouverture .conteneur { display: grid; gap: 48px; align-items: center; }
+@media (min-width: 920px) { .ouverture .conteneur { grid-template-columns: 1.05fr 0.95fr; } }
+.ouverture-texte { display: grid; gap: 20px; min-width: 0; }
+.ouverture-texte .chapeau { max-width: 40ch; }
+
+/* ─── Fenêtre de décor (même découpe que les pièces de l'accueil) ─ */
+.fenetre { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--surface); }
+.fenetre .decor { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: var(--decor-filtre); }
+
+
+/* ─── Adresse à copier ─────────────────────────────────────────── */
+.adresse {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  justify-self: start;
+  max-width: 100%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--carte);
+  box-shadow: var(--ombre);
+}
+.adresse code { font: 700 1.02rem/1.2 var(--texte); color: var(--encre); user-select: all; overflow-wrap: anywhere; }
+.copier {
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 14px;
+  background: var(--orange-pale);
+  color: var(--orange-texte);
+  font: 800 0.88rem/1 var(--texte);
+  cursor: pointer;
+}
+.copier:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+
+
+/* FAQ des pages pros et partenaires : même composant que l'accueil */
+.section .faq { margin-inline: 0; }
+
+/* Lien vers une autre page : flèche vers la droite (la flèche vers le bas reste pour les ancres) */
+.lien-fleche.vers-page::after { content: "  \2192"; }
+/* Ouverture dont le visuel est plus haut que le texte (rapport des pros) */
+@media (min-width: 920px) { .ouverture.haute .conteneur { align-items: start; } .ouverture.haute .ouverture-texte { padding-top: 48px; } }

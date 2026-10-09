@@ -1,0 +1,29 @@
+# Pawer
+
+> Pawer est une application Android gratuite et sans publicité, éditée par Studio HLF (Hugo Lefort, France), pour suivre la semaine de son chien : balades mesurées par GPS, jeux d'intérieur, éducation, carnet de santé avec rapport pour le vétérinaire et rencontres entre maîtres.
+
+Pawer est gratuit et sans publicité. Une formule Pawer+ (programmes guidés) viendra plus tard ; le carnet de santé, les balades, le rapport pour le vétérinaire et les rencontres resteront gratuits. Disponible sur Android 7 ou plus récent ; pas de version iPhone pour l'instant. Pawer ne pose aucun diagnostic et ne remplace pas le vétérinaire.
+
+## Pages
+
+- [Pawer pour les maîtres](https://pawer.studiohlf.com/) : balades mesurées par GPS, jeux d'intérieur, exercices d'éducation sourcés, carnet de santé, rencontres entre maîtres, données, questions fréquentes.
+- [Pawer pour les vétérinaires et éducateurs](https://pawer.studiohlf.com/pros/) : contenu du rapport PDF pour la consultation, exercices entre deux séances, engagements.
+- [Marques partenaires](https://pawer.studiohlf.com/partenaires/) : futur catalogue de produits pour chien, règles de confiance, chiffres I-CAD des chiens en France.
+
+## Faits
+
+- Éditeur : Studio HLF, micro-entreprise de Hugo Lefort (France). Contact : hugolefort97@gmail.com
+- Téléchargement : https://play.google.com/store/apps/details?id=com.studiohlf.pawer
+- Données hébergées en Europe (Francfort). Application utilisable sans réseau.
+- Balade : durée, distance et trajet mesurés par GPS, écran éteint ; position demandée seulement pendant l'utilisation.
+- Rencontres : 18 ans et plus, désactivées par défaut ; zone d'environ 300 m choisie par le maître, jamais sa position ; rayon de 5 km ; ni photo ni messagerie.
+- Rapport pour le vétérinaire : PDF, période choisie par le maître (4 semaines par défaut) ; poids et poids cible, score corporel estimé, mobilité, activité, comportement, actes et rappels ; aucun tracé GPS ni calorie.
+- Éducation : chaque exercice cite sa source (programme officiel de club canin ou étude publiée).
+
+## Facultatif
+
+- [Mentions légales](https://pawer.studiohlf.com/mentions-legales/)
+- [Confidentialité de l'application](https://pawer.studiohlf.com/confidentialite.html)
+- [Supprimer son compte Pawer](https://pawer.studiohlf.com/suppression-compte.html)
+- [Règles de la communauté](https://pawer.studiohlf.com/regles-communaute.html)
+- [Cookies du site](https://pawer.studiohlf.com/cookies/)

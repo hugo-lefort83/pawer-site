@@ -1,0 +1,62 @@
+/* Page des vétérinaires et éducateurs : rapport d'exemple, sources, encarts. */
+
+/* ─── Rapport d'exemple : une feuille imprimée, claire dans les deux thèmes ─ */
+.rapport {
+  width: min(440px, 100%);
+  margin-inline: auto;
+  padding: 22px 22px 18px;
+  border-radius: 6px;
+  background: var(--papier);
+  color: var(--papier-encre);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 22px 44px rgba(61, 44, 30, 0.18);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  rotate: -1.2deg;
+}
+@media (prefers-reduced-motion: no-preference) { .rapport { transition: rotate 0.4s ease; } .rapport:hover { rotate: 0deg; } }
+@media (max-width: 480px) { .rapport { rotate: 0deg; padding: 18px 16px 14px; } }
+.rapport .etiquette-exemple {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #FFF1D6;
+  color: #7A4B00;
+  font: 800 0.68rem/1.2 var(--texte);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.rapport h3 { font: 700 1.2rem/1.15 var(--titre); color: var(--papier-encre); }
+.rapport .periode { color: var(--papier-doux); margin: 2px 0 6px; }
+.rapport h4 {
+  margin: 10px 0 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--papier-ligne);
+  font: 800 0.68rem/1.2 var(--texte);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--papier-doux);
+}
+.rapport p { max-width: none; margin: 0; }
+.rapport .mention { color: var(--papier-doux); font-style: italic; }
+.rapport table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.rapport th, .rapport td { padding: 3px 4px; text-align: right; border-bottom: 1px solid var(--papier-ligne); }
+.rapport th:first-child, .rapport td:first-child { text-align: left; }
+.rapport th { font-weight: 700; color: var(--papier-doux); font-size: 0.7rem; }
+.rapport .pied-rapport { margin-top: 12px; padding-top: 8px; border-top: 1px solid #2B211A; color: var(--papier-encre); font-size: 0.72rem; }
+
+/* ─── Éducateurs : terrain d'éducation et sources ─────────────────── */
+.educ-visuel { border-radius: var(--rayon); box-shadow: var(--ombre); }
+.educ-visuel .chien-marionnette { --x: 50%; --h: 46%; --sol: 9%; }
+.sources-bloc { display: grid; gap: 12px; margin-top: clamp(28px, 4vw, 44px); }
+.sources-bloc h3 { font-size: 1.1rem; }
+.sources { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.sources li { margin: 0; }
+.sources a { display: inline-block; padding: 6px 12px; border-radius: 10px; background: var(--surface); color: var(--encre); font-weight: 700; font-size: 0.92rem; text-decoration: none; }
+.sources a:hover { color: var(--orange-texte); text-decoration: underline; }
+.etudes { display: grid; gap: 6px; padding-left: 1.1em; margin: 0; color: var(--encre-douce); font-size: 0.92rem; }
+
+/* ─── En préparation ─────────────────────────────────────────────── */
+.colonnes-pros { display: grid; gap: 18px; }
+@media (min-width: 860px) { .colonnes-pros { grid-template-columns: repeat(2, 1fr); } }
+.encart h3 .bientot { margin-left: 6px; }
