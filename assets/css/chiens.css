@@ -7,11 +7,13 @@
      la marionnette porte seule le mouvement, sur place ;
    - avant le premier dessin, sans WebGL ou sans script, l'image de repli
      (première image de la boucle, rendue par la marionnette) reste visible ;
-   - mouvement réduit : la marionnette dessine une image fixe.
+   - mouvement réduit : la marionnette dessine une image fixe ;
+   - JAMAIS de pose de marche sur le site (demande du porteur, 10 oct. 2026) :
+     on illustre avec la tête penchée (« curieux »).
 
    Gabarit :
-   <div class="chien-marionnette" data-race="labrador" data-pose="marche" aria-hidden="true" style="--h: 50%; --sol: 8%">
-     <img src="/assets/img/chiens/labrador-marche.webp" alt="" width="…" height="…" loading="lazy">
+   <div class="chien-marionnette" data-race="teckel" data-pose="curieux" aria-hidden="true" style="--h: 50%; --sol: 8%">
+     <img src="/assets/img/chiens/teckel-curieux.webp" alt="" width="…" height="…" loading="lazy">
    </div>
    --x : abscisse du centre ; --sol : hauteur du sol depuis le bas du cadre ;
    --h : hauteur de l'élément (celle de la race, la même pour ses six poses).
@@ -63,14 +65,12 @@
 .chien-marionnette[data-race="berger-australien"][data-pose="assis"] > img { height: 97.2%; }
 .chien-marionnette[data-race="berger-australien"][data-pose="reverence"] > img { height: 74.0%; }
 .chien-marionnette[data-race="berger-australien"][data-pose="saut"] > img { height: 97.9%; }
-.chien-marionnette[data-race="labrador"][data-pose="marche"] > img { height: 81.5%; }
 .chien-marionnette[data-race="labrador"][data-pose="assis"] > img { height: 92.3%; }
 .chien-marionnette[data-race="golden-retriever"][data-pose="saut"] > img { height: 100.0%; }
 .chien-marionnette[data-race="berger-allemand"][data-pose="curieux"] > img { height: 99.3%; }
 .chien-marionnette[data-race="berger-allemand"][data-pose="assis"] > img { height: 100.0%; }
 .chien-marionnette[data-race="chihuahua"][data-pose="curieux"] > img { height: 89.4%; }
 .chien-marionnette[data-race="chihuahua"][data-pose="assis"] > img { height: 87.8%; }
-.chien-marionnette[data-race="teckel"][data-pose="marche"] > img { height: 78.1%; }
 .chien-marionnette[data-race="teckel"][data-pose="curieux"] > img { height: 93.3%; }
 .chien-marionnette[data-race="bouledogue-francais"][data-pose="assis"] > img { height: 89.9%; }
 .chien-marionnette[data-race="bouledogue-francais"][data-pose="curieux"] > img { height: 91.5%; }
