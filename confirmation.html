@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Confirmation de l'adresse — Pawer</title>
+<!--
+  Page de retour du lien de confirmation d'inscription (adresse donnée à Supabase
+  par l'application : emailRedirectTo, voir src/services/authService.ts).
+  Supabase a déjà confirmé l'adresse quand il renvoie ici ; il ajoute ses
+  paramètres au fragment (#access_token=…, ou #error=… si le lien a expiré).
+  La page :
+    1. retire aussitôt ces paramètres de la barre d'adresse et de l'historique ;
+    2. dit « Adresse confirmée » (ou explique l'erreur) ;
+    3. sur Android, rouvre l'application (com.studiohlf.pawer) avec le lien
+       pawer://confirmation en lui transmettant ces paramètres, pour qu'elle
+       s'ouvre connectée ; le lien « intent » désigne le paquet : aucune autre
+       application ne peut recevoir les jetons ;
+    4. ailleurs, invite à revenir dans Pawer et à se connecter.
+  Aucune ressource externe sauf le logo. Les jetons ne quittent jamais le
+  navigateur, sinon vers l'application.
+-->
+<style>
+:root {
+  color-scheme: light dark;
+  --ink: #2b211a; --soft: #6b5d52; --ground: #fff8f0; --card: #ffffff; --line: #eadfd3;
+  --accent: #b4500e; --on-accent: #ffffff;
+  --ok: #1f6e3a; --ok-ground: #e3f2e7; --warn: #9a3412; --warn-ground: #fdeee4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f4ebe2; --soft: #c2b3a6; --ground: #1e1611; --card: #2a2019; --line: #43352b;
+    --accent: #ffa35c; --on-accent: #2b211a;
+    --ok: #8fd6a4; --ok-ground: #1f3a28; --warn: #ffb48a; --warn-ground: #46261a;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+main { max-width: 30rem; margin: 0 auto; padding: 2rem 1rem 3rem; }
+.brand { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 1.25rem; color: var(--ink); text-decoration: none; }
+.brand img { width: 48px; height: 48px; border-radius: 12px; display: block; }
+.brand span { font-size: 1.45rem; font-weight: 800; letter-spacing: 0.01em; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.75rem 1.35rem 1.5rem; text-align: center; box-shadow: 0 1px 2px rgba(43, 33, 26, 0.06), 0 10px 28px rgba(43, 33, 26, 0.07); }
+.badge { width: 64px; height: 64px; margin: 0 auto 1rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.badge.ok { background: var(--ok-ground); color: var(--ok); }
+.badge.warn { background: var(--warn-ground); color: var(--warn); }
+.badge svg { width: 34px; height: 34px; }
+h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.6rem; }
+p { margin: 0.55rem 0; color: var(--soft); }
+.lead { color: var(--ink); font-weight: 600; }
+.button { display: flex; align-items: center; justify-content: center; min-height: 52px; margin: 1.4rem 0 0.5rem; padding: 0.8rem 1.2rem; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 1.05rem; text-decoration: none; }
+.button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.small { font-size: 0.92rem; }
+a { color: var(--accent); }
+footer { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--soft); }
+footer p { margin: 0.3rem 0; }
+[hidden] { display: none !important; }
+.nw { white-space: nowrap; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="https://pawer.studiohlf.com/">
+    <img src="https://pawer.studiohlf.com/icon-192.png" width="48" height="48" alt="">
+    <span>Pawer</span>
+  </a>
+
+  <!-- Adresse confirmée -->
+  <section class="card" id="etat-ok" hidden>
+    <div class="badge ok" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1>Adresse confirmée</h1>
+    <p class="lead">Merci ! Votre compte Pawer est activé.</p>
+    <div data-cas="android-app">
+      <p>Pawer s'ouvre sur ce téléphone, déjà connecté. Sinon, touchez le bouton&nbsp;:</p>
+      <a class="button" data-ouvrir href="#">Ouvrir Pawer</a>
+      <p class="small">Si Pawer ne s'ouvre pas, ouvrez l'application vous-même et connectez-vous avec votre adresse <span class="nw">e-mail</span> et votre mot de passe.</p>
+    </div>
+    <div data-cas="android-sans-app" hidden>
+      <p>Pawer n'est pas installé sur ce téléphone. Installez-le, puis connectez-vous avec votre adresse <span class="nw">e-mail</span> et votre mot de passe.</p>
+      <a class="button" href="https://play.google.com/store/apps/details?id=com.studiohlf.pawer">Voir Pawer sur Google Play</a>
+    </div>
+    <div data-cas="ailleurs" hidden>
+      <p>Revenez dans Pawer sur votre téléphone et connectez-vous avec votre adresse <span class="nw">e-mail</span> et votre mot de passe.</p>
+      <p class="small">Pas encore l'application&nbsp;? <a href="https://play.google.com/store/apps/details?id=com.studiohlf.pawer">Pawer sur Google Play</a></p>
+    </div>
+  </section>
+
+  <!-- Lien expiré, déjà servi ou refusé -->
+  <section class="card" id="etat-erreur" hidden>
+    <div class="badge warn" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 7v6.5"/><path d="M12 17.2v.1"/></svg>
+    </div>
+    <h1 id="titre-erreur">Ce lien a expiré</h1>
+    <p class="lead">Un lien de confirmation ne sert qu'une fois, et pour une durée limitée.</p>
+    <p>Votre adresse est peut-être déjà confirmée&nbsp;: essayez simplement de vous connecter dans Pawer. Sinon, sur l'écran de connexion, Pawer vous proposera de renvoyer un nouvel <span class="nw">e-mail</span>.</p>
+    <div data-cas="android-app">
+      <a class="button" data-ouvrir href="#">Ouvrir Pawer</a>
+    </div>
+  </section>
+
+  <!-- Page ouverte sans passer par le lien de l'<span class="nw">e-mail</span> -->
+  <section class="card" id="etat-neutre">
+    <div class="badge ok" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4.5 7.5l7.5 5.5 7.5-5.5"/></svg>
+    </div>
+    <h1>Confirmation de votre adresse</h1>
+    <p class="lead">Cette page s'affiche quand vous ouvrez le lien reçu par <span class="nw">e-mail</span> après votre inscription à Pawer.</p>
+    <p>Pour confirmer votre adresse, ouvrez ce lien depuis l'<span class="nw">e-mail</span>. Si vous venez de le faire, ouvrez Pawer et connectez-vous avec votre adresse <span class="nw">e-mail</span> et votre mot de passe&nbsp;: si l'adresse n'était pas confirmée, l'application vous proposera de renvoyer l'<span class="nw">e-mail</span>.</p>
+    <div data-cas="android-app" hidden>
+      <a class="button" data-ouvrir href="#">Ouvrir Pawer</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Pawer — application de suivi de chien</p>
+    <p><a href="confidentialite.html">Confidentialité</a> · Une question&nbsp;: pawer@studiohlf.com</p>
+  </footer>
+</main>
+<script>
+(function () {
+  'use strict';
+  var PACKAGE = 'com.studiohlf.pawer';
+  var PAGE = 'https://pawer.studiohlf.com/confirmation.html';
+  // Paramètres de Supabase transmis tels quels à l'application
+  var KEYS = ['access_token', 'refresh_token', 'expires_in', 'expires_at', 'token_type', 'type',
+    'code', 'token_hash', 'error', 'error_code', 'error_description'];
+
+  var params = {};
+  function read(part) {
+    if (!part) return;
+    new URLSearchParams(part).forEach(function (value, key) { params[key] = value; });
+  }
+  read(location.search.slice(1));
+  read(location.hash.slice(1)); // le fragment l'emporte, comme dans l'application
+
+  var forwarded = new URLSearchParams();
+  KEYS.forEach(function (key) { if (params[key]) forwarded.set(key, params[key]); });
+
+  var hasError = !!(params.error || params.error_code || params.error_description);
+  var hasProof = !!(params.access_token || params.code || params.token_hash || params.type);
+  var etat = hasError ? 'erreur' : hasProof ? 'ok'
+    : (params.etat === 'ok' || params.etat === 'erreur') ? params.etat : 'neutre';
+  var expire = hasError
+    ? /expired|invalid/i.test((params.error_code || '') + ' ' + (params.error_description || ''))
+    : params.motif === 'expire';
+  var sansApp = params['sans-app'] === '1';
+
+  // 1. Les jetons quittent la barre d'adresse et l'historique ; l'état reste
+  //    (un rechargement affiche la même chose, sans jeton).
+  var base = '?etat=' + etat + (etat === 'erreur' && expire ? '&motif=expire' : '');
+  var memo = base + (sansApp ? '&sans-app=1' : '');
+  if (location.search || location.hash) {
+    try { history.replaceState(null, '', location.pathname + (etat === 'neutre' ? '' : memo)); } catch (e) { /* rien */ }
+  }
+
+  // Après un rechargement, l'erreur est redite à l'application
+  if (etat === 'erreur' && !hasError) {
+    forwarded.set('error', 'access_denied');
+    if (expire) forwarded.set('error_code', 'otp_expired');
+  }
+
+  // 2. Le lien qui rouvre l'application. Page neutre : l'application, sans
+  //    rien affirmer ; sinon pawer://confirmation et ce que Supabase a envoyé.
+  var android = /Android/i.test(navigator.userAgent);
+  var query = forwarded.toString();
+  var path = etat === 'neutre' ? '' : 'confirmation';
+  // Application absente : Chrome revient ici, et la page propose Google Play
+  var fallback = PAGE + (etat === 'neutre' ? '?' : base + '&') + 'sans-app=1';
+  var intentLink = 'intent://' + path + (query ? '?' + query : '') +
+    '#Intent;scheme=pawer;package=' + PACKAGE +
+    ';S.browser_fallback_url=' + encodeURIComponent(fallback) + ';end';
+  var appLink = 'pawer://' + path + (query ? '#' + query : '');
+
+  // 3. Affichage
+  var section = document.getElementById('etat-' + etat);
+  ['ok', 'erreur', 'neutre'].forEach(function (name) {
+    document.getElementById('etat-' + name).hidden = name !== etat;
+  });
+  if (etat === 'erreur' && !expire) {
+    document.getElementById('titre-erreur').textContent = 'Ce lien n’a pas fonctionné';
+  }
+  var cas = android ? (sansApp ? 'android-sans-app' : 'android-app') : 'ailleurs';
+  var blocks = section.querySelectorAll('[data-cas]');
+  for (var i = 0; i < blocks.length; i += 1) {
+    blocks[i].hidden = blocks[i].getAttribute('data-cas') !== cas;
+  }
+  var buttons = section.querySelectorAll('[data-ouvrir]');
+  for (var j = 0; j < buttons.length; j += 1) {
+    buttons[j].setAttribute('href', android ? intentLink : appLink);
+  }
+  document.title = (etat === 'ok' ? 'Adresse confirmée' : etat === 'erreur' ? 'Lien de confirmation' : 'Confirmation de l’adresse') + ' — Pawer';
+
+  // 4. Sur Android, l'application s'ouvre d'elle-même quand le lien porte de
+  //    quoi la connecter (une seule fois : un rechargement n'a plus de jeton).
+  if (android && !sansApp && etat === 'ok' && (forwarded.has('access_token') || forwarded.has('code') || forwarded.has('token_hash'))) {
+    setTimeout(function () { window.location.href = intentLink; }, 700);
+  }
+})();
+</script>
+</body>
+</html>
