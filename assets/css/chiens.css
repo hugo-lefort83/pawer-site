@@ -74,6 +74,14 @@
 .chien-marionnette[data-race="teckel"][data-pose="curieux"] > img { height: 93.3%; }
 .chien-marionnette[data-race="bouledogue-francais"][data-pose="assis"] > img { height: 89.9%; }
 .chien-marionnette[data-race="bouledogue-francais"][data-pose="curieux"] > img { height: 91.5%; }
+.chien-marionnette[data-race="teckel"][data-pose="reverence"] > img { height: 92.2%; }
+.chien-marionnette[data-race="labrador"][data-pose="curieux"] > img { height: 91.6%; }
+.chien-marionnette[data-race="labrador"][data-pose="endormi"] > img { height: 54.3%; }
+.chien-marionnette[data-race="husky"][data-pose="assis"] > img { height: 87.2%; }
+.chien-marionnette[data-race="husky"][data-pose="reverence"] > img { height: 89.9%; }
+.chien-marionnette[data-race="chihuahua"][data-pose="reverence"] > img { height: 78.2%; }
+.chien-marionnette[data-race="golden-retriever"][data-pose="curieux"] > img { height: 92.9%; }
+.chien-marionnette[data-race="bouledogue-francais"][data-pose="saut"] > img { height: 100.0%; }
 /*/REPLIS*/
 
 /* ─── Cadre sans décor (appel final) : il coupe ce qui dépasse ─────── */
