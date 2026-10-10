@@ -16,7 +16,9 @@ Pawer est gratuit et sans publicité. Une formule Pawer+ (programmes guidés) vi
 - Téléchargement : https://play.google.com/store/apps/details?id=com.studiohlf.pawer
 - Données hébergées en Europe (Francfort). Application utilisable sans réseau.
 - Balade : durée, distance et trajet mesurés par GPS, écran éteint ; le trajet s'affiche sur une carte pendant la balade et reste dans l'historique ; position demandée seulement pendant l'utilisation.
-- Rencontres : 18 ans et plus, désactivées par défaut ; zone d'environ 300 m choisie par le maître, jamais sa position ; rayon de 5 km ; ni photo ni messagerie ; filtres par gabarit, énergie, âge, sexe et stérilisation, gardés sur le téléphone ; sexe et stérilisation visibles seulement avec l'accord du maître.
+- Lieux pour chiens : carte des parcs à chiens, espaces verts où les chiens sont admis, points d'eau, vétérinaires et distributeurs de sacs (données OpenStreetMap) ; un lieu proposé est vérifié avant d'être visible.
+- Météo : conseils chaleur et froid au départ d'une balade, d'après MET Norway ; seule une position arrondie à environ 1 km part, sans le compte.
+- Rencontres : 18 ans et plus, désactivées par défaut ; zone d'environ 300 m choisie par le maître, jamais sa position ; rayon réglable de 1 à 10 km (5 par défaut) ; pas de photo ; demande de balade (jour, moment, lieu), puis discussion à deux en texte seul si l'autre maître accepte ; signalement et blocage ; pas de demande d'ami ni de groupe ; filtres par gabarit, énergie, âge, sexe, stérilisation et jours de balade, gardés sur le téléphone ; sexe et stérilisation visibles seulement avec l'accord du maître.
 - Rapport pour le vétérinaire : PDF, période choisie par le maître (4 semaines par défaut) ; poids et poids cible, score corporel estimé, mobilité, activité, comportement, actes et rappels ; aucun tracé GPS ni calorie.
 - Éducation : chaque exercice cite sa source (programme officiel de club canin ou étude publiée).
 

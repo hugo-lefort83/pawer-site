@@ -92,12 +92,14 @@
    },
    "image": "https://pawer.studiohlf.com/icon-512.png",
    "featureList": [
-    "Balades mesurées par GPS : durée, distance et trajet",
-    "Jeux d'intérieur et séances de sport",
+    "Balades mesurées par GPS : durée, distance et trajet sur une carte",
+    "Conseils chaleur et froid au départ des balades (météo MET Norway)",
+    "Jeux d'intérieur, séances de sport et défis personnels",
     "18 ordres d'éducation en trois niveaux, avec leur source",
     "Carnet de santé : pesées, poids cible, vaccins, vermifuges, rendez-vous, rappels, journal de comportement",
     "Rapport PDF pour le vétérinaire",
-    "Rencontres entre maîtres (18 ans et plus) : zone d'environ 300 m, rayon de 5 km",
+    "Lieux pour chiens autour de vous : parcs à chiens, points d'eau, vétérinaires (OpenStreetMap)",
+    "Rencontres entre maîtres (18 ans et plus) : zone d'environ 300 m, rayon de 1 à 10 km, demande de balade puis discussion en texte seul",
     "Sans publicité, utilisable sans réseau, données hébergées en Europe (Francfort)"
    ]
   },
@@ -131,10 +133,18 @@
     },
     {
      "@type": "Question",
+     "name": "Pawer montre-t-il les parcs à chiens près de chez moi ?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Oui. Une carte autour de vous montre les parcs à chiens, les espaces verts où les chiens sont admis, les points d'eau, les vétérinaires et les distributeurs de sacs, d'après OpenStreetMap. Un lieu manque ? Vous le proposez, et il est vérifié avant d'être visible des autres. Un lieu faux se signale."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "Faut-il du réseau ?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Pas pour le suivi. Vos saisies partent dès que le réseau revient. L'inscription, la connexion et les rencontres en demandent."
+      "text": "Pas pour le suivi. Vos saisies partent dès que le réseau revient. L'inscription, la connexion, les rencontres, les lieux et la météo en demandent."
      }
     },
     {
@@ -142,7 +152,7 @@
      "name": "Comment fonctionnent les rencontres entre maîtres ?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Vous pouvez filtrer les chiens par gabarit, énergie, âge, sexe et stérilisation. Réservé aux 18 ans et plus."
+      "text": "Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans le rayon que vous réglez, de 1 à 10 km. Les autres voient votre zone, jamais votre position exacte. Vous filtrez les chiens par gabarit, énergie, âge, sexe, stérilisation et jours de balade, puis vous proposez une balade. Une discussion en texte seul s'ouvre seulement si l'autre maître accepte. Réservé aux 18 ans et plus."
      }
     },
     {
@@ -317,7 +327,7 @@
         <div class="visite-texte">
           <p class="lieu">La balade</p>
           <h3>Vous marchez, le téléphone compte</h3>
-          <p>Le GPS du téléphone mesure la durée, la distance et l'allure, sans collier ni boîtier. Le trajet se dessine sur la carte pendant que vous marchez. De retour, vous le retrouvez dans l'historique avec « Voir le trajet ».</p>
+          <p>Le GPS du téléphone mesure la durée, la distance et l'allure, sans collier ni boîtier. Le trajet se dessine sur la carte pendant que vous marchez. De retour, vous le retrouvez dans l'historique avec « Voir le trajet ». Par forte chaleur ou grand froid, un conseil au départ vous dit quand sortir.</p>
         </div>
       </div>
       <div class="visite-panneau" role="tabpanel" id="ecran-jeux" aria-labelledby="onglet-jeux" data-cache>
@@ -327,7 +337,7 @@
         <div class="visite-texte">
           <p class="lieu">Le coin jeux</p>
           <h3>De quoi l'occuper les jours de pluie</h3>
-          <p>Kong fourré, tapis de fouille, recherche de friandises : des jeux d'occupation, de flair et de papouilles à faire en appartement. Chacun se valide une fois par jour et nourrit l'anneau mental.</p>
+          <p>Kong fourré, tapis de fouille, recherche de friandises : des jeux d'occupation, de flair et de papouilles à faire en appartement. Chacun se valide une fois par jour et nourrit l'anneau mental. Vous pouvez aussi créer vos propres défis, gardés avec votre compte.</p>
         </div>
       </div>
       <div class="visite-panneau" role="tabpanel" id="ecran-education" aria-labelledby="onglet-education" data-cache>
@@ -372,10 +382,11 @@
         <ul class="liste-points">
           <li>Vous choisissez d'apparaître ou non. Tant que les rencontres restent désactivées, personne ne vous voit.</li>
           <li>Vous placez vous-même une zone d'environ 300 m, par exemple le parc de vos sorties. Les autres voient cette zone, jamais votre position exacte.</li>
-          <li>Vous voyez les maîtres qui ont fait le même choix, dans un rayon de 5 km.</li>
-          <li>Une fiche montre un prénom et le chien : nom, race, gabarit, énergie, tranche d'âge. Son sexe et sa stérilisation n'y figurent que si vous l'acceptez. Ni photo ni messagerie.</li>
-          <li>Depuis chaque fiche, vous pouvez signaler ou bloquer un maître. Vous pouvez quitter la carte à tout moment.</li>
-          <li>Vous choisissez les chiens que vous voyez, depuis le Profil : gabarit, énergie, âge, sexe, stérilisation. Pas à l'aise avec les grands chiens ou les chiens non stérilisés ? Vous ne les voyez plus, pas plus que ceux dont le critère n'est pas renseigné. Ces préférences restent sur votre téléphone, et personne ne sait qu'il est masqué.</li>
+          <li>Vous voyez les maîtres qui ont fait le même choix, dans le rayon que vous réglez, de 1 à 10 km.</li>
+          <li>Une fiche montre un prénom et le chien : nom, race, gabarit, énergie, tranche d'âge et, si vous le voulez, vos jours de balade. Son sexe et sa stérilisation n'y figurent que si vous l'acceptez. Pas de photo.</li>
+          <li>Depuis une fiche, vous proposez une balade : le jour, le moment, le lieu. Si l'autre maître accepte, une discussion à deux s'ouvre, en texte seul. Rien ne se passe sans son accord.</li>
+          <li>Une fiche, une demande ou un message se signale, et un maître se bloque. Vous pouvez quitter la carte à tout moment. Pas de demande d'ami ni de groupe.</li>
+          <li>Vous choisissez les chiens que vous voyez : gabarit, énergie, âge, sexe, stérilisation, jours de balade. Pas à l'aise avec les grands chiens ou les chiens non stérilisés ? Vous ne les voyez plus, pas plus que ceux dont le critère n'est pas renseigné. Ces préférences restent sur votre téléphone, et personne ne sait qu'il est masqué.</li>
         </ul>
       </div>
       <figure class="carte-quartier">
@@ -416,7 +427,7 @@
               <rect x="253.3" y="257.7" width="58.8" height="39.2" fill="none" stroke="#C2410C" stroke-width="5"/>
             </svg>
           </span>
-          <p>Le même quartier, vu de plus haut : le cercle montre le rayon de 5 km dans lequel vous voyez les autres maîtres, et le cadre orange la carte ci-dessus.</p>
+          <p>Le même quartier, vu de plus haut : le cercle montre un rayon de 5 km, celui réglé au départ, dans lequel vous voyez les autres maîtres. Vous le choisissez entre 1 et 10 km. Le cadre orange est la carte ci-dessus.</p>
         </div>
         <figcaption class="credit">Illustration à l'échelle : chaque carré fait environ 300 m de côté. Fond de carte Protomaps, &copy; <a href="https://www.openstreetmap.org/copyright">Contributeurs OpenStreetMap</a>.</figcaption>
       </figure>
@@ -462,12 +473,16 @@
           <div class="reponse"><p>Pas pour l'instant. Pawer demande Android 7 ou plus récent.</p></div>
         </details>
         <details>
+          <summary>Pawer montre-t-il les parcs à chiens près de chez moi ?</summary>
+          <div class="reponse"><p>Oui. Une carte autour de vous montre les parcs à chiens, les espaces verts où les chiens sont admis, les points d'eau, les vétérinaires et les distributeurs de sacs, d'après OpenStreetMap. Un lieu manque ? Vous le proposez, et il est vérifié avant d'être visible des autres. Un lieu faux se signale.</p></div>
+        </details>
+        <details>
           <summary>Faut-il du réseau ?</summary>
-          <div class="reponse"><p>Pas pour le suivi. Vos saisies partent dès que le réseau revient. L'inscription, la connexion et les rencontres en demandent.</p></div>
+          <div class="reponse"><p>Pas pour le suivi. Vos saisies partent dès que le réseau revient. L'inscription, la connexion, les rencontres, les lieux et la météo en demandent.</p></div>
         </details>
         <details>
           <summary>Comment fonctionnent les rencontres entre maîtres ?</summary>
-          <div class="reponse"><p>Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Vous pouvez filtrer les chiens par gabarit, énergie, âge, sexe et stérilisation. Réservé aux 18 ans et plus.</p></div>
+          <div class="reponse"><p>Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans le rayon que vous réglez, de 1 à 10 km. Les autres voient votre zone, jamais votre position exacte. Vous filtrez les chiens par gabarit, énergie, âge, sexe, stérilisation et jours de balade, puis vous proposez une balade. Une discussion en texte seul s'ouvre seulement si l'autre maître accepte. Réservé aux 18 ans et plus.</p></div>
         </details>
         <details>
           <summary>Mon chien n'est pas d'une des huit races dessinées. Apparaît-il quand même ?</summary>
