@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pawer.studiohlf.com/favicon-32.png">
+<link rel="apple-touch-icon" href="https://pawer.studiohlf.com/apple-touch-icon-180.png">
+<meta name="theme-color" content="#F97316">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
-<title>Confirmation de l'adresse — Pawer</title>
+<title>Confirmation de l'adresse | Pawer</title>
 <!--
   Page de retour du lien de confirmation d'inscription (adresse donnée à Supabase
   par l'application : emailRedirectTo, voir src/services/authService.ts).
@@ -116,7 +119,7 @@ footer p { margin: 0.3rem 0; }
   </section>
 
   <footer>
-    <p>Pawer — application de suivi de chien</p>
+    <p>Pawer, application de suivi de chien</p>
     <p><a href="confidentialite.html">Confidentialité</a> · Une question&nbsp;: hugolefort97@gmail.com</p>
   </footer>
 </main>
@@ -192,7 +195,7 @@ footer p { margin: 0.3rem 0; }
   for (var j = 0; j < buttons.length; j += 1) {
     buttons[j].setAttribute('href', android ? intentLink : appLink);
   }
-  document.title = (etat === 'ok' ? 'Adresse confirmée' : etat === 'erreur' ? 'Lien de confirmation' : 'Confirmation de l’adresse') + ' — Pawer';
+  document.title = (etat === 'ok' ? 'Adresse confirmée' : etat === 'erreur' ? 'Lien de confirmation' : 'Confirmation de l’adresse') + ' | Pawer';
 
   // 4. Sur Android, l'application s'ouvre d'elle-même quand le lien porte de
   //    quoi la connecter (une seule fois : un rechargement n'a plus de jeton).
