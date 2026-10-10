@@ -101,25 +101,36 @@
 .piste { stroke: var(--piste); }
 .garde-fous { margin-top: 24px; color: var(--encre-douce); }
 
-/* ─── Pièces de la maison ─────────────────────────────────────────── */
-.pieces { display: grid; gap: 20px; grid-template-columns: 1fr; }
-@media (min-width: 640px) {
-  .pieces { grid-template-columns: repeat(2, 1fr); }
-  .piece.large { grid-column: span 2; }
-}
-@media (min-width: 1000px) { .pieces { grid-template-columns: repeat(3, 1fr); } .piece.large { grid-column: span 2; } }
-.piece { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--rayon); background: var(--carte); box-shadow: var(--ombre); }
-.fenetre { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--surface); container-type: size; }
-.fenetre .decor { width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: var(--decor-filtre); }
-.piece-texte { display: grid; gap: 8px; padding: 18px 20px 22px; min-width: 0; align-content: start; }
+/* ─── Visite des écrans de l'application (onglets) ───────────────── */
+.visite { display: grid; gap: 28px; padding: clamp(18px, 4vw, 40px); border-radius: var(--rayon); background: var(--carte); box-shadow: var(--ombre); }
+.visite-onglets { position: relative; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 4px; margin: -4px; }
+.visite-onglets::-webkit-scrollbar { display: none; }
+.visite:not(.pret) .visite-onglets { display: none; }
+.visite-onglet { flex: 0 0 auto; padding: 11px 18px; border: 1px solid var(--ligne); border-radius: 999px; background: var(--fond); color: var(--encre); font: 700 0.95rem/1 var(--texte); cursor: pointer; transition: background-color .2s, border-color .2s, color .2s; }
+.visite-onglet:hover { border-color: var(--orange); }
+.visite-onglet[aria-selected="true"] { border-color: var(--orange-fond); background: var(--orange-fond); color: var(--sur-orange); }
+.visite-onglet:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.visite-panneau { display: grid; gap: 24px; align-items: center; }
+.visite-panneau[hidden] { display: none; }
+.visite:not(.pret) .visite-panneau + .visite-panneau { padding-top: 28px; border-top: 1px solid var(--ligne); }
+.visite-telephone { width: min(250px, 62vw); aspect-ratio: auto; margin-inline: auto; padding: 8px; border-radius: 34px; }
+.visite-telephone .ecran { height: auto; border-radius: 27px; background: var(--fond); }
+.visite-telephone img { display: block; width: 100%; height: auto; }
+.visite-texte { display: grid; gap: 10px; max-width: 48ch; }
 .lieu { font: 800 0.75rem/1.2 var(--texte); letter-spacing: 0.08em; text-transform: uppercase; color: var(--sauge-texte); }
-.piece-texte p { color: var(--encre-douce); }
-@media (min-width: 640px) {
-  .piece.large { flex-direction: row; }
-  .piece.large .fenetre { flex: 0 0 48%; aspect-ratio: auto; min-height: 320px; }
-  .piece.large .fenetre .decor { position: absolute; inset: 0; }
-  .piece.large .piece-texte { align-content: center; padding: 28px; }
+.visite-suivant { justify-self: start; margin-top: 6px; padding: 0; border: 0; background: none; color: var(--orange-texte); font: 800 1rem/1.4 var(--texte); cursor: pointer; }
+.visite-suivant::after { content: "\00a0\2192"; }
+.visite-suivant:hover { text-decoration: underline; }
+.visite-suivant:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+.visite-texte p { color: var(--encre-douce); }
+@media (min-width: 760px) {
+  .visite-panneau { grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 64px); }
+  .visite-telephone { width: 290px; margin: 0; }
+  .visite-texte h3 { font-size: 1.6rem; }
 }
+.visite-panneau.entre img, .visite-panneau.entre .visite-texte { animation: visite-entree .35s ease both; }
+@keyframes visite-entree { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .visite-panneau.entre img, .visite-panneau.entre .visite-texte { animation: none; } }
 
 /* ─── Rencontres : un quartier dessiné avec ses chiens ────────────── */
 .rencontres-grille { display: grid; gap: 32px; align-items: start; }

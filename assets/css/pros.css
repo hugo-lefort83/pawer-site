@@ -56,7 +56,16 @@
 .sources a:hover { color: var(--orange-texte); text-decoration: underline; }
 .etudes { display: grid; gap: 6px; padding-left: 1.1em; margin: 0; color: var(--encre-douce); font-size: 0.92rem; }
 
-/* ─── En préparation ─────────────────────────────────────────────── */
-.colonnes-pros { display: grid; gap: 18px; }
-@media (min-width: 860px) { .colonnes-pros { grid-template-columns: repeat(2, 1fr); } }
-.encart h3 .bientot { margin-left: 6px; }
+/* ─── Documents à imprimer ───────────────────────────────────────── */
+.ressources { display: grid; gap: 20px; }
+@media (min-width: 720px) { .ressources { grid-template-columns: repeat(3, 1fr); } }
+.ressource { display: flex; flex-direction: column; overflow: hidden; border-radius: var(--rayon); background: var(--carte); box-shadow: var(--ombre); }
+.ressource-apercu { display: block; padding: 22px 22px 0; background: var(--surface); }
+.ressource-apercu img { display: block; width: 100%; max-width: 240px; height: auto; margin: 0 auto; border-radius: 6px 6px 0 0; box-shadow: 0 -2px 18px rgba(61, 44, 30, 0.12); transition: transform .25s ease; }
+.ressource-apercu:hover img { transform: translateY(-4px); }
+.ressource-texte { display: grid; gap: 10px; flex: 1; align-content: start; padding: 20px 22px 24px; }
+.ressource-texte p { color: var(--encre-douce); }
+.ressource-format { font-size: 0.88rem; }
+.ressource-texte .bouton { justify-self: start; margin-top: auto; }
+.ressources-pied { margin-top: 24px; max-width: 70ch; color: var(--encre-douce); }
+@media (prefers-reduced-motion: reduce) { .ressource-apercu img { transition: none; } }

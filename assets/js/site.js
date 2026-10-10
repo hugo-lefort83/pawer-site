@@ -2,10 +2,11 @@
    1. Consentement et Google Analytics 4 (mode de consentement v2, tout refusé
       par défaut ; gtag.js n'est chargé qu'après « Accepter »). L'identifiant
       vient de <meta name="pawer-ga"> : vide dans l'aperçu, donc rien ne part.
-   2. Événements : clic_google_play, clic_courriel, lecture_faq.
+   2. Événements : clic_google_play, clic_courriel, lecture_faq, telechargement_document.
    3. Animations : pause hors écran ([data-anim] reçoit .hors-ecran),
       « réduire les animations » suivi en direct, remplissage des anneaux
-      ([data-anneaux] reçoit .remplir), chien blanc Lottie servi par le site. */
+      ([data-anneaux] reçoit .remplir), chien blanc Lottie servi par le site.
+   4. Visite des écrans ([data-visite]) : onglets accessibles, flèches du clavier. */
 (function () {
   'use strict';
   var racine = document.documentElement.getAttribute('data-racine') || '/';
@@ -86,6 +87,7 @@
     var h = a.getAttribute('href');
     if (h.indexOf('play.google.com') !== -1) gtag('event', 'clic_google_play', { page: page(), emplacement: a.getAttribute('data-emplacement') || 'autre' });
     else if (h.indexOf('mailto:') === 0) gtag('event', 'clic_courriel', { page: page(), sujet: a.getAttribute('data-sujet') || 'contact' });
+    else if (a.hasAttribute('data-ressource')) gtag('event', 'telechargement_document', { page: page(), document: a.getAttribute('data-ressource') });
   });
   tous('details').forEach(function (d) {
     d.addEventListener('toggle', function () {
@@ -152,4 +154,50 @@
   var change = function () { tous('[data-pawer-lottie]').forEach(majChienBlanc); };
   if (reduit.addEventListener) reduit.addEventListener('change', change);
   else if (reduit.addListener) reduit.addListener(change);
+
+  /* ─── 4. Visite des écrans ([data-visite]) ───────────────────────── */
+  tous('[data-visite]').forEach(function (v) {
+    var liste = v.querySelector('[role="tablist"]');
+    var onglets = Array.prototype.slice.call(v.querySelectorAll('[role="tab"]'));
+    var panneaux = onglets.map(function (o) { return document.getElementById(o.getAttribute('aria-controls')); });
+    function choisir(i, clavier) {
+      onglets.forEach(function (o, k) {
+        var actif = k === i;
+        o.setAttribute('aria-selected', actif ? 'true' : 'false');
+        o.tabIndex = actif ? 0 : -1;
+        panneaux[k].hidden = !actif;
+        panneaux[k].classList.toggle('entre', actif);
+      });
+      if (clavier) onglets[i].focus();
+      var o = onglets[i];
+      if (o.offsetLeft < liste.scrollLeft || o.offsetLeft + o.offsetWidth > liste.scrollLeft + liste.clientWidth) {
+        liste.scrollTo({ left: o.offsetLeft - 8, behavior: reduit.matches ? 'auto' : 'smooth' });
+      }
+    }
+    onglets.forEach(function (o, i) {
+      o.addEventListener('click', function () { choisir(i); });
+      o.addEventListener('keydown', function (e) {
+        var n = onglets.length, k = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') k = (i + 1) % n;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') k = (i + n - 1) % n;
+        else if (e.key === 'Home') k = 0;
+        else if (e.key === 'End') k = n - 1;
+        if (k !== null) { e.preventDefault(); choisir(k, true); }
+      });
+    });
+    panneaux.forEach(function (p, k) {
+      p.hidden = k !== 0;
+      p.removeAttribute('data-cache');
+      // « Écran suivant » : créé ici, car il ne sert à rien sans script
+      var suivant = (k + 1) % onglets.length;
+      var bouton = document.createElement('button');
+      bouton.type = 'button';
+      bouton.className = 'visite-suivant';
+      bouton.textContent = suivant ? 'Écran suivant : ' + onglets[suivant].textContent.trim().toLowerCase() : 'Revenir au salon';
+      bouton.addEventListener('click', function () { choisir(suivant, true); });
+      var texte = p.querySelector('.visite-texte');
+      if (texte) texte.appendChild(bouton);
+    });
+    v.classList.add('pret');
+  });
 })();

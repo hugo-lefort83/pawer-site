@@ -118,7 +118,7 @@
      "name": "Comment Pawer mesure-t-il une balade ?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Avec le GPS de votre téléphone. Aucun boîtier à acheter."
+      "text": "Avec le GPS de votre téléphone. Aucun boîtier à acheter. Le trajet s'affiche sur une carte pendant la balade, puis reste dans l'historique."
      }
     },
     {
@@ -142,7 +142,7 @@
      "name": "Comment fonctionnent les rencontres entre maîtres ?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Réservé aux 18 ans et plus."
+      "text": "Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Vous pouvez filtrer les chiens par gabarit, énergie, âge, sexe et stérilisation. Réservé aux 18 ans et plus."
      }
     },
     {
@@ -203,7 +203,7 @@
         <p class="chapeau">Balades mesurées par le téléphone, jeux d'intérieur, 18 ordres d'éducation, carnet de santé. Vous voyez à tout moment où en est sa semaine.</p>
         <div class="actions">
           <a class="badge-play" href="https://play.google.com/store/apps/details?id=com.studiohlf.pawer" data-emplacement="ouverture"><img src="/assets/img/google-play-fr.png" alt="Disponible sur Google Play" width="646" height="250"></a>
-          <a class="lien-fleche" href="#maison">Faire le tour de la maison</a>
+          <a class="lien-fleche" href="#maison">Voir les écrans de l'application</a>
         </div>
         <ul class="reperes" aria-label="En bref">
           <li>Gratuit</li>
@@ -287,77 +287,79 @@
   <section class="section" id="maison">
     <div class="conteneur">
       <div class="entete-section">
-        <p class="surtitre">Une maison pour votre chien</p>
-        <h2>Chaque partie de l'application est une pièce</h2>
-        <p class="chapeau">Votre chien y apparaît en dessin. Huit races ont le leur, en six poses. Une race proche prend le dessin le plus ressemblant, les autres un chien blanc animé.</p>
+        <p class="surtitre">Dans l'application</p>
+        <h2>Six écrans pour suivre toute sa semaine</h2>
+        <p class="chapeau">Pawer est rangé comme une maison : le salon pour le bilan, l'entrée pour sortir, le coin jeux, le carnet. Voici les vrais écrans, avec Django, le chien de démonstration.</p>
       </div>
-      <div class="pieces">
-        <article class="piece">
-          <div class="fenetre">
-            <img class="decor" src="/assets/img/decors/salon.webp" alt="" width="768" height="1367" loading="lazy">
-            <div class="chien-marionnette" data-race="berger-australien" data-pose="assis" aria-hidden="true" style="--h: 54%; --sol: 7%">
-              <img src="/assets/img/chiens/berger-australien-assis.webp" alt="" width="283" height="415" loading="lazy">
-            </div>
-          </div>
-          <div class="piece-texte">
-            <p class="lieu">Le salon</p>
-            <h3>Le bilan du jour et de la semaine</h3>
-            <p>Vos anneaux, votre série de jours actifs et les rappels de santé à venir. Une bulle signale un rappel prévu dans les 7 jours ou déjà en retard. Badges et niveaux obtenus restent dans un centre de notifications.</p>
-          </div>
-        </article>
-        <article class="piece">
-          <div class="fenetre">
-            <img class="decor" src="/assets/img/decors/parc.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 55%">
-            <div class="chien-marionnette" data-race="labrador" data-pose="marche" aria-hidden="true" style="--h: 50%; --sol: 8%">
-              <img src="/assets/img/chiens/labrador-marche.webp" alt="" width="515" height="369" loading="lazy">
-            </div>
-          </div>
-          <div class="piece-texte">
-            <p class="lieu">Les balades</p>
-            <h3>Votre téléphone mesure la balade</h3>
-            <p>Vous lancez la balade et le téléphone mesure la durée, la distance et le trajet. Vous l'arrêtez en rentrant, et elle s'ajoute à vos anneaux.</p>
-          </div>
-        </article>
-        <article class="piece">
-          <div class="fenetre">
-            <img class="decor" src="/assets/img/decors/coin-jeux.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 60%">
-            <div class="chien-marionnette" data-race="golden-retriever" data-pose="saut" data-decalage="400" aria-hidden="true" style="--h: 50%; --sol: 7%">
-              <img src="/assets/img/chiens/golden-retriever-saut.webp" alt="" width="409" height="452" loading="lazy">
-            </div>
-          </div>
-          <div class="piece-texte">
-            <p class="lieu">Le coin jeux</p>
-            <h3>Des jeux d'intérieur pour les jours de pluie</h3>
-            <p>De quoi occuper votre chien en appartement : jeux de flair, de papouilles et d'occupation, chacun se rejoue une fois par jour. Dehors, des séances de sport à faire ensemble.</p>
-          </div>
-        </article>
-        <article class="piece">
-          <div class="fenetre">
-            <img class="decor" src="/assets/img/decors/terrain-education.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 58%">
-            <div class="chien-marionnette" data-race="berger-allemand" data-pose="assis" data-decalage="1700" aria-hidden="true" style="--h: 54%; --sol: 7%">
-              <img src="/assets/img/chiens/berger-allemand-assis.webp" alt="" width="300" height="436" loading="lazy">
-            </div>
-          </div>
-          <div class="piece-texte">
-            <p class="lieu">Le terrain d'éducation</p>
-            <h3>18 ordres en trois niveaux, sources citées</h3>
-            <p>Assis, couché, rappel, pas bouger, puis la marche au pied. Chaque ordre cite sa source : Société Centrale Canine, AKC, Kennel Club, FCI ou étude publiée. Vous validez chacun au plus tôt 12 heures après l'avoir commencé.</p>
-          </div>
-        </article>
-        <article class="piece large">
-          <div class="fenetre">
-            <img class="decor" src="/assets/img/decors/coin-sante.webp" alt="" width="768" height="1367" loading="lazy" style="object-position:50% 52%">
-            <div class="chien-marionnette" data-race="chihuahua" data-pose="assis" data-decalage="2600" aria-hidden="true" style="--h: min(50%, 135px); --sol: 7%">
-              <img src="/assets/img/chiens/chihuahua-assis.webp" alt="" width="352" height="439" loading="lazy">
-            </div>
-          </div>
-          <div class="piece-texte">
-            <p class="lieu">Le carnet de santé</p>
-            <h3>Un carnet de santé prêt pour le vétérinaire</h3>
-            <p>Pesées, poids cible, vaccins, vermifuges et rendez-vous, avec leurs rappels. Le soir, si vous l'activez, une notification vous propose de remplir le journal de comportement. Avant la visite, vous partagez un rapport PDF, sur quatre semaines par défaut.</p>
-            <p><a href="/pros/">Voir ce que contient le rapport</a></p>
-          </div>
-        </article>
+      <div class="visite" data-visite>
+      <div class="visite-onglets" role="tablist" aria-label="Écrans de l'application">
+        <button class="visite-onglet" type="button" role="tab" id="onglet-salon" aria-controls="ecran-salon" aria-selected="true">Le salon</button>
+        <button class="visite-onglet" type="button" role="tab" id="onglet-balade" aria-controls="ecran-balade" aria-selected="false" tabindex="-1">La balade</button>
+        <button class="visite-onglet" type="button" role="tab" id="onglet-jeux" aria-controls="ecran-jeux" aria-selected="false" tabindex="-1">Le coin jeux</button>
+        <button class="visite-onglet" type="button" role="tab" id="onglet-education" aria-controls="ecran-education" aria-selected="false" tabindex="-1">L'éducation</button>
+        <button class="visite-onglet" type="button" role="tab" id="onglet-carnet" aria-controls="ecran-carnet" aria-selected="false" tabindex="-1">Le carnet</button>
+        <button class="visite-onglet" type="button" role="tab" id="onglet-tendances" aria-controls="ecran-tendances" aria-selected="false" tabindex="-1">Les tendances</button>
+      </div>
+      <div class="visite-panneau" role="tabpanel" id="ecran-salon" aria-labelledby="onglet-salon">
+        <div class="telephone visite-telephone">
+          <div class="ecran"><img src="/assets/img/ecrans/salon.webp" alt="Écran d'accueil de Pawer : le salon dessiné avec le chien, la suggestion du jour et les trois anneaux de la semaine" width="540" height="960" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="visite-texte">
+          <p class="lieu">Le salon</p>
+          <h3>Sa semaine d'un coup d'œil</h3>
+          <p>En ouvrant Pawer, vous voyez où en est la semaine : les trois anneaux, physique, mental et social, la série de jours actifs et une suggestion pour aujourd'hui. Une bulle signale un rappel de santé prévu dans les 7 jours ou déjà en retard.</p>
+        </div>
+      </div>
+      <div class="visite-panneau" role="tabpanel" id="ecran-balade" aria-labelledby="onglet-balade" data-cache>
+        <div class="telephone visite-telephone">
+          <div class="ecran"><img src="/assets/img/ecrans/balade.webp" alt="Écran d'une balade en cours dans Pawer : durée, distance et allure, avec le trajet tracé sur la carte du quartier" width="540" height="960" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="visite-texte">
+          <p class="lieu">La balade</p>
+          <h3>Vous marchez, le téléphone compte</h3>
+          <p>Le GPS du téléphone mesure la durée, la distance et l'allure, sans collier ni boîtier. Le trajet se dessine sur la carte pendant que vous marchez. De retour, vous le retrouvez dans l'historique avec « Voir le trajet ».</p>
+        </div>
+      </div>
+      <div class="visite-panneau" role="tabpanel" id="ecran-jeux" aria-labelledby="onglet-jeux" data-cache>
+        <div class="telephone visite-telephone">
+          <div class="ecran"><img src="/assets/img/ecrans/jeux.webp" alt="Coin jeux de Pawer : jeux d'occupation à valider, comme le Kong fourré et le tapis de fouille" width="540" height="960" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="visite-texte">
+          <p class="lieu">Le coin jeux</p>
+          <h3>De quoi l'occuper les jours de pluie</h3>
+          <p>Kong fourré, tapis de fouille, recherche de friandises : des jeux d'occupation, de flair et de papouilles à faire en appartement. Chacun se valide une fois par jour et nourrit l'anneau mental.</p>
+        </div>
+      </div>
+      <div class="visite-panneau" role="tabpanel" id="ecran-education" aria-labelledby="onglet-education" data-cache>
+        <div class="telephone visite-telephone">
+          <div class="ecran"><img src="/assets/img/ecrans/education.webp" alt="Écran Obéissance de Pawer : l'ordre « Pas bouger » à valider, avec ses sources AKC, Kennel Club et Société Centrale Canine" width="540" height="960" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="visite-texte">
+          <p class="lieu">L'éducation</p>
+          <h3>18 ordres, chacun avec sa source</h3>
+          <p>Assis, couché, rappel, pas bouger, puis la marche au pied, en trois niveaux de six. Chaque ordre cite sa source : Société Centrale Canine, AKC, Kennel Club, FCI ou étude publiée. Le bouton « Valider » s'ouvre 12 heures après le début, le temps de vraiment s'entraîner.</p>
+        </div>
+      </div>
+      <div class="visite-panneau" role="tabpanel" id="ecran-carnet" aria-labelledby="onglet-carnet" data-cache>
+        <div class="telephone visite-telephone">
+          <div class="ecran"><img src="/assets/img/ecrans/carnet.webp" alt="Carnet de santé de Pawer : le journal du soir et les tendances de la semaine" width="540" height="960" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="visite-texte">
+          <p class="lieu">Le carnet</p>
+          <h3>Prêt pour la prochaine visite</h3>
+          <p>Pesées, poids cible, vaccins, vermifuges et rendez-vous, avec leurs rappels. Le soir, si vous l'activez, une notification vous propose de remplir le journal de comportement. Avant la visite, vous partagez un rapport PDF de quatre semaines avec votre vétérinaire.</p><p><a href="/pros/">Voir ce que contient le rapport</a></p>
+        </div>
+      </div>
+      <div class="visite-panneau" role="tabpanel" id="ecran-tendances" aria-labelledby="onglet-tendances" data-cache>
+        <div class="telephone visite-telephone">
+          <div class="ecran"><img src="/assets/img/ecrans/tendances.webp" alt="Écran des tendances de Pawer : les minutes actives de chaque semaine comparées aux semaines précédentes" width="540" height="960" loading="lazy" decoding="async"></div>
+        </div>
+        <div class="visite-texte">
+          <p class="lieu">Les tendances</p>
+          <h3>Comparé à lui-même, jamais aux autres</h3>
+          <p>Minutes actives, poids et score corporel : chaque semaine est mise à côté des quatre précédentes de votre chien, jamais de celles d'autres chiens. Pawer montre ce qui change, sans l'expliquer ni poser de diagnostic.</p>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -371,9 +373,9 @@
           <li>Vous choisissez d'apparaître ou non. Tant que les rencontres restent désactivées, personne ne vous voit.</li>
           <li>Vous placez vous-même une zone d'environ 300 m, par exemple le parc de vos sorties. Les autres voient cette zone, jamais votre position exacte.</li>
           <li>Vous voyez les maîtres qui ont fait le même choix, dans un rayon de 5 km.</li>
-          <li>Une fiche montre un prénom et le chien : nom, race, gabarit, énergie, tranche d'âge. Ni photo ni messagerie.</li>
+          <li>Une fiche montre un prénom et le chien : nom, race, gabarit, énergie, tranche d'âge. Son sexe et sa stérilisation n'y figurent que si vous l'acceptez. Ni photo ni messagerie.</li>
           <li>Depuis chaque fiche, vous pouvez signaler ou bloquer un maître. Vous pouvez quitter la carte à tout moment.</li>
-          <li class="a-venir"><span>Choisir les chiens que vous croisez selon le gabarit, l'énergie, l'âge, le sexe et la stérilisation, depuis le Profil. <span class="bientot">Bientôt</span></span></li>
+          <li>Vous choisissez les chiens que vous voyez, depuis le Profil : gabarit, énergie, âge, sexe, stérilisation. Pas à l'aise avec les grands chiens ou les chiens non stérilisés ? Vous ne les voyez plus, pas plus que ceux dont le critère n'est pas renseigné. Ces préférences restent sur votre téléphone, et personne ne sait qu'il est masqué.</li>
         </ul>
       </div>
       <figure class="carte-quartier">
@@ -453,7 +455,7 @@
         </details>
         <details>
           <summary>Comment Pawer mesure-t-il une balade ?</summary>
-          <div class="reponse"><p>Avec le GPS de votre téléphone. Aucun boîtier à acheter.</p></div>
+          <div class="reponse"><p>Avec le GPS de votre téléphone. Aucun boîtier à acheter. Le trajet s'affiche sur une carte pendant la balade, puis reste dans l'historique.</p></div>
         </details>
         <details>
           <summary>Et sur iPhone ?</summary>
@@ -465,7 +467,7 @@
         </details>
         <details>
           <summary>Comment fonctionnent les rencontres entre maîtres ?</summary>
-          <div class="reponse"><p>Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Réservé aux 18 ans et plus.</p></div>
+          <div class="reponse"><p>Vous placez une zone d'environ 300 m et voyez les maîtres qui se montrent dans un rayon de 5 km. Les autres voient votre zone, jamais votre position exacte. Vous pouvez filtrer les chiens par gabarit, énergie, âge, sexe et stérilisation. Réservé aux 18 ans et plus.</p></div>
         </details>
         <details>
           <summary>Mon chien n'est pas d'une des huit races dessinées. Apparaît-il quand même ?</summary>

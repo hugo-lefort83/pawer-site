@@ -7,16 +7,16 @@ Pawer est gratuit et sans publicité. Une formule Pawer+ (programmes guidés) vi
 ## Pages
 
 - [Pawer pour les maîtres](https://pawer.studiohlf.com/) : balades mesurées par GPS, jeux d'intérieur, exercices d'éducation sourcés, carnet de santé, rencontres entre maîtres, données, questions fréquentes.
-- [Pawer pour les vétérinaires et éducateurs](https://pawer.studiohlf.com/pros/) : contenu du rapport PDF pour la consultation, exercices entre deux séances, engagements.
+- [Pawer pour les vétérinaires et éducateurs](https://pawer.studiohlf.com/pros/) : contenu du rapport PDF pour la consultation, exercices entre deux séances, engagements, documents gratuits à imprimer (affiche de salle d'attente, cartes d'accueil, fiche des 18 ordres pour les élèves).
 - [Marques partenaires](https://pawer.studiohlf.com/partenaires/) : futur catalogue de produits pour chien, règles de confiance, chiffres I-CAD des chiens en France.
 
 ## Faits
 
-- Éditeur : Studio HLF, micro-entreprise de Hugo Lefort (France). Contact : hugolefort97@gmail.com
+- Éditeur : Hugo Lefort EI, entrepreneur individuel, sous la marque Studio HLF (France). Contact : hugolefort97@gmail.com
 - Téléchargement : https://play.google.com/store/apps/details?id=com.studiohlf.pawer
 - Données hébergées en Europe (Francfort). Application utilisable sans réseau.
-- Balade : durée, distance et trajet mesurés par GPS, écran éteint ; position demandée seulement pendant l'utilisation.
-- Rencontres : 18 ans et plus, désactivées par défaut ; zone d'environ 300 m choisie par le maître, jamais sa position ; rayon de 5 km ; ni photo ni messagerie.
+- Balade : durée, distance et trajet mesurés par GPS, écran éteint ; le trajet s'affiche sur une carte pendant la balade et reste dans l'historique ; position demandée seulement pendant l'utilisation.
+- Rencontres : 18 ans et plus, désactivées par défaut ; zone d'environ 300 m choisie par le maître, jamais sa position ; rayon de 5 km ; ni photo ni messagerie ; filtres par gabarit, énergie, âge, sexe et stérilisation, gardés sur le téléphone ; sexe et stérilisation visibles seulement avec l'accord du maître.
 - Rapport pour le vétérinaire : PDF, période choisie par le maître (4 semaines par défaut) ; poids et poids cible, score corporel estimé, mobilité, activité, comportement, actes et rappels ; aucun tracé GPS ni calorie.
 - Éducation : chaque exercice cite sa source (programme officiel de club canin ou étude publiée).
 
