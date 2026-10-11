@@ -8,6 +8,7 @@ Pawer est gratuit et sans publicité. Une formule Pawer+ (programmes guidés) vi
 
 - [Pawer pour les maîtres](https://pawer.studiohlf.com/) : balades mesurées par GPS, jeux d'intérieur, exercices d'éducation sourcés, carnet de santé, rencontres entre maîtres, données, questions fréquentes.
 - [Pawer pour les vétérinaires et éducateurs](https://pawer.studiohlf.com/pros/) : contenu du rapport PDF pour la consultation, exercices entre deux séances, engagements, documents gratuits à imprimer (affiche de salle d'attente, cartes d'accueil, fiche des 18 ordres pour les élèves).
+- [Devenir testeur](https://pawer.studiohlf.com/tester/) : Pawer est en test sur Google Play ; envoyer son adresse Gmail, être ajouté à la liste des testeurs, puis installer l'application depuis le lien de test ; affiche à imprimer.
 - [Marques partenaires](https://pawer.studiohlf.com/partenaires/) : futur catalogue de produits pour chien, règles de confiance, chiffres I-CAD des chiens en France.
 
 ## Faits
