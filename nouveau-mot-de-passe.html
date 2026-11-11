@@ -20,7 +20,9 @@
     1. retire aussitôt le jeton de la barre d'adresse et de l'historique ;
     2. ne consomme le jeton qu'à l'envoi du formulaire (un antivirus ou une
        messagerie qui « visite » le lien ne l'use donc pas) ;
-    3. échange le jeton contre une session, change le mot de passe, ferme la session.
+    3. échange le jeton contre une session, change le mot de passe, puis ferme
+       TOUTES les sessions du compte : quiconque utilisait l'ancien mot de passe,
+       sur n'importe quel appareil, doit se reconnecter avec le nouveau.
   Le jeton et le mot de passe ne vont qu'au serveur de Pawer (Supabase). La clé
   ci-dessous est la clé PUBLIQUE du projet, la même que dans l'application.
   Les champs n'ont pas d'attribut « name » : même sans script, rien ne part dans l'adresse.
@@ -141,6 +143,7 @@ footer p { margin: 0.3rem 0; }
     try { history.replaceState(null, '', location.pathname); } catch (e) { /* rien */ }
   }
   var session = null; // jeton d'accès obtenu en échange : le lien ne s'échange qu'une fois
+  var change = false; // mot de passe déjà enregistré : un nouvel envoi ne refait que la déconnexion
 
   var ETATS = ['formulaire', 'ok', 'erreur', 'neutre'];
   function montrer(etat) {
@@ -184,7 +187,7 @@ footer p { margin: 0.3rem 0; }
 
   function envoyer(evenement) {
     evenement.preventDefault();
-    var message = verifier(mdp.value, mdp2.value);
+    var message = change ? '' : verifier(mdp.value, mdp2.value);
     if (message) { dire(message, mdp.value.length < LONGUEUR_MIN ? mdp : mdp2); return; }
     dire('');
     occupe(true);
@@ -199,18 +202,31 @@ footer p { margin: 0.3rem 0; }
         });
 
     etape.then(function (acces) {
-      // 3. Changement du mot de passe
-      return appeler('PUT', '/user', { password: mdp.value }, acces).then(function (r) {
-        if (!r.ok) throw r;
-        // Fermeture de la session ouverte pour l'occasion (sans attendre, sans bloquer)
-        appeler('POST', '/logout?scope=local', null, acces).catch(function () { /* rien */ });
-        session = null;
-        mdp.value = '';
-        mdp2.value = '';
-        montrer('ok');
+      // 3. Changement du mot de passe, une seule fois
+      var enregistrement = change
+        ? Promise.resolve()
+        : appeler('PUT', '/user', { password: mdp.value }, acces).then(function (r) {
+            if (!r.ok) throw r;
+            change = true;
+          });
+      return enregistrement.then(function () {
+        // 4. Fermeture de TOUTES les sessions du compte, celle-ci comprise. La page
+        //    n'annonce la réussite qu'une fois cette fermeture confirmée.
+        return appeler('POST', '/logout?scope=global', null, acces).then(function (r) {
+          if (!r.ok) throw r;
+          session = null;
+          mdp.value = '';
+          mdp2.value = '';
+          montrer('ok');
+        });
       });
     }).catch(function (r) {
       occupe(false);
+      if (change) {
+        // Le mot de passe est enregistré ; seule la déconnexion a échoué : un nouvel envoi la refait
+        dire('Votre mot de passe est bien changé. Il reste à déconnecter vos autres appareils : touchez de nouveau le bouton.');
+        return;
+      }
       if (r && typeof r.statut === 'number') {
         if (r.code === 'weak_password') { dire('Ce mot de passe est trop simple. Choisissez-en un plus long ou moins courant.', mdp); return; }
         if (r.code === 'same_password') { dire('Ce mot de passe est déjà le vôtre. Choisissez-en un autre, ou connectez-vous dans Pawer avec celui-ci.', mdp); return; }
