@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Page de mot de passe : rien d'autre que nos styles, notre script, le logo et le serveur de Pawer -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src https://pawer.studiohlf.com; connect-src https://vztmodmzdutgvhqjhzik.supabase.co; form-action 'none'; base-uri 'none'">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pawer.studiohlf.com/favicon-32.png">
+<link rel="apple-touch-icon" href="https://pawer.studiohlf.com/apple-touch-icon-180.png">
+<meta name="theme-color" content="#F97316">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Nouveau mot de passe | Pawer</title>
+<!--
+  Page ouverte par le lien de l'e-mail « mot de passe oublié » (gabarit Supabase
+  « Reset password » : …/nouveau-mot-de-passe.html#token_hash=…&type=recovery).
+  Pourquoi une page web : le lien d'origine (pawer://reset-password) n'ouvrait rien
+  sur un ordinateur, ni dans certains navigateurs de téléphone.
+  La page :
+    1. retire aussitôt le jeton de la barre d'adresse et de l'historique ;
+    2. ne consomme le jeton qu'à l'envoi du formulaire (un antivirus ou une
+       messagerie qui « visite » le lien ne l'use donc pas) ;
+    3. échange le jeton contre une session, change le mot de passe, ferme la session.
+  Le jeton et le mot de passe ne vont qu'au serveur de Pawer (Supabase). La clé
+  ci-dessous est la clé PUBLIQUE du projet, la même que dans l'application.
+  Les champs n'ont pas d'attribut « name » : même sans script, rien ne part dans l'adresse.
+-->
+<style>
+:root {
+  color-scheme: light dark;
+  --ink: #2b211a; --soft: #6b5d52; --ground: #fff8f0; --card: #ffffff; --line: #eadfd3;
+  --accent: #b4500e; --on-accent: #ffffff;
+  --ok: #1f6e3a; --ok-ground: #e3f2e7; --warn: #9a3412; --warn-ground: #fdeee4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #f4ebe2; --soft: #c2b3a6; --ground: #1e1611; --card: #2a2019; --line: #43352b;
+    --accent: #ffa35c; --on-accent: #2b211a;
+    --ok: #8fd6a4; --ok-ground: #1f3a28; --warn: #ffb48a; --warn-ground: #46261a;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ground); color: var(--ink); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+main { max-width: 30rem; margin: 0 auto; padding: 2rem 1rem 3rem; }
+.brand { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 1.25rem; color: var(--ink); text-decoration: none; }
+.brand img { width: 48px; height: 48px; border-radius: 12px; display: block; }
+.brand span { font-size: 1.45rem; font-weight: 800; letter-spacing: 0.01em; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.75rem 1.35rem 1.5rem; text-align: center; box-shadow: 0 1px 2px rgba(43, 33, 26, 0.06), 0 10px 28px rgba(43, 33, 26, 0.07); }
+.badge { width: 64px; height: 64px; margin: 0 auto 1rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.badge.ok { background: var(--ok-ground); color: var(--ok); }
+.badge.warn { background: var(--warn-ground); color: var(--warn); }
+.badge svg { width: 34px; height: 34px; }
+h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 0.6rem; }
+h1:focus { outline: none; }
+p { margin: 0.55rem 0; color: var(--soft); }
+.lead { color: var(--ink); font-weight: 600; }
+form { text-align: left; margin-top: 1.2rem; }
+label { display: block; margin: 0.9rem 0 0.3rem; font-weight: 600; color: var(--ink); }
+input[type="password"], input[type="text"] { width: 100%; min-height: 52px; padding: 0.7rem 0.9rem; border: 1.5px solid var(--line); border-radius: 12px; background: var(--ground); color: var(--ink); font: inherit; }
+input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.voir { display: flex; align-items: center; gap: 0.55rem; min-height: 44px; margin-top: 0.5rem; font-weight: 400; color: var(--soft); cursor: pointer; }
+.voir input { width: 1.25rem; height: 1.25rem; accent-color: var(--accent); }
+.alerte { margin: 1rem 0 0; padding: 0.75rem 0.9rem; border-radius: 12px; background: var(--warn-ground); color: var(--warn); font-weight: 600; }
+.button { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 52px; margin: 1.4rem 0 0.5rem; padding: 0.8rem 1.2rem; border: 0; border-radius: 999px; background: var(--accent); color: var(--on-accent); font: inherit; font-weight: 700; font-size: 1.05rem; text-decoration: none; cursor: pointer; }
+.button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.button[disabled] { opacity: 0.6; cursor: progress; }
+.small { font-size: 0.92rem; }
+a { color: var(--accent); }
+footer { margin-top: 1.5rem; text-align: center; font-size: 0.9rem; color: var(--soft); }
+footer p { margin: 0.3rem 0; }
+[hidden] { display: none !important; }
+.nw { white-space: nowrap; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="https://pawer.studiohlf.com/">
+    <img src="https://pawer.studiohlf.com/icon-192.png" width="48" height="48" alt="">
+    <span>Pawer</span>
+  </a>
+
+  <!-- Le lien de l'e-mail vient d'être ouvert : choix du nouveau mot de passe -->
+  <section class="card" id="etat-formulaire" hidden>
+    <h1 tabindex="-1">Choisissez un nouveau mot de passe</h1>
+    <p>Pour votre compte Pawer. Au moins 6 caractères.</p>
+    <form id="formulaire" method="post" novalidate>
+      <label for="mdp">Nouveau mot de passe</label>
+      <input id="mdp" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false" aria-describedby="alerte">
+      <label for="mdp2">Le même, une seconde fois</label>
+      <input id="mdp2" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false" aria-describedby="alerte">
+      <label class="voir"><input id="voir" type="checkbox"> Afficher les mots de passe</label>
+      <p class="alerte" id="alerte" role="alert" hidden></p>
+      <button class="button" id="envoyer" type="submit">Enregistrer le mot de passe</button>
+    </form>
+  </section>
+
+  <!-- Mot de passe changé -->
+  <section class="card" id="etat-ok" hidden>
+    <div class="badge ok" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1 tabindex="-1">Mot de passe modifié</h1>
+    <p class="lead">Ouvrez Pawer et connectez-vous avec votre adresse <span class="nw">e-mail</span> et ce nouveau mot de passe.</p>
+    <a class="button" id="ouvrir" href="pawer://" hidden>Ouvrir Pawer</a>
+  </section>
+
+  <!-- Lien expiré ou déjà utilisé -->
+  <section class="card" id="etat-erreur" hidden>
+    <div class="badge warn" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 7v6.5"/><path d="M12 17.2v.1"/></svg>
+    </div>
+    <h1 tabindex="-1">Ce lien a expiré</h1>
+    <p class="lead">Un lien de changement de mot de passe ne sert qu'une fois, pendant une heure.</p>
+    <p>Dans Pawer, sur l'écran de connexion, touchez «&nbsp;Mot de passe oublié&nbsp;?&nbsp;» pour recevoir un nouvel <span class="nw">e-mail</span>, puis ouvrez le lien qu'il contient.</p>
+  </section>
+
+  <!-- Page ouverte sans passer par le lien de l'e-mail, ou rechargée -->
+  <section class="card" id="etat-neutre">
+    <h1 tabindex="-1">Nouveau mot de passe</h1>
+    <p class="lead">Cette page s'ouvre depuis le lien reçu par <span class="nw">e-mail</span> quand vous avez oublié votre mot de passe Pawer.</p>
+    <p>Ouvrez ce lien depuis l'<span class="nw">e-mail</span>. Si vous veniez de le faire et que la page a été rechargée, rouvrez-le&nbsp;: il reste valable tant que le mot de passe n'a pas été changé.</p>
+    <noscript><p class="alerte">Cette page a besoin de JavaScript pour changer votre mot de passe.</p></noscript>
+  </section>
+
+  <footer>
+    <p>Pawer, application de suivi de chien</p>
+    <p><a href="confidentialite.html">Confidentialité</a> · Une question&nbsp;: hugolefort97@gmail.com</p>
+  </footer>
+</main>
+<script>
+(function () {
+  'use strict';
+  var SERVEUR = 'https://vztmodmzdutgvhqjhzik.supabase.co/auth/v1';
+  var CLE_PUBLIQUE = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ6dG1vZG16ZHV0Z3ZocWpoemlrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1OTg4ODksImV4cCI6MjA4OTE3NDg4OX0.ZM6kQVUfYVcZM03c9gH9FrJAb8HTPjacZPm6fY1DSvY';
+  var LONGUEUR_MIN = 6; // même règle que l'application (ResetPasswordScreen.tsx)
+
+  // 1. Le jeton quitte la barre d'adresse et l'historique ; il ne vit plus qu'ici.
+  var params = new URLSearchParams(location.hash.slice(1));
+  var jeton = params.get('type') === 'recovery' ? params.get('token_hash') : null;
+  if (location.hash || location.search) {
+    try { history.replaceState(null, '', location.pathname); } catch (e) { /* rien */ }
+  }
+  var session = null; // jeton d'accès obtenu en échange : le lien ne s'échange qu'une fois
+
+  var ETATS = ['formulaire', 'ok', 'erreur', 'neutre'];
+  function montrer(etat) {
+    ETATS.forEach(function (nom) { document.getElementById('etat-' + nom).hidden = nom !== etat; });
+    var titre = document.querySelector('#etat-' + etat + ' h1');
+    document.title = titre.textContent + ' | Pawer';
+    if (etat !== 'neutre') titre.focus();
+  }
+
+  var alerte = document.getElementById('alerte');
+  var bouton = document.getElementById('envoyer');
+  var mdp = document.getElementById('mdp');
+  var mdp2 = document.getElementById('mdp2');
+  function dire(message, champ) {
+    alerte.textContent = message;
+    alerte.hidden = !message;
+    if (champ) champ.focus();
+  }
+  function occupe(oui) {
+    bouton.disabled = oui;
+    bouton.textContent = oui ? 'Enregistrement…' : 'Enregistrer le mot de passe';
+  }
+
+  /** Message à afficher pour une vérification du formulaire, ou '' si tout va bien */
+  function verifier(a, b) {
+    if (a.length < LONGUEUR_MIN) return 'Le mot de passe doit contenir au moins ' + LONGUEUR_MIN + ' caractères.';
+    if (a !== b) return 'Les deux mots de passe ne sont pas identiques.';
+    return '';
+  }
+
+  function appeler(methode, chemin, corps, acces) {
+    var entetes = { apikey: CLE_PUBLIQUE, 'Content-Type': 'application/json' };
+    if (acces) entetes.Authorization = 'Bearer ' + acces;
+    return fetch(SERVEUR + chemin, { method: methode, headers: entetes, body: corps ? JSON.stringify(corps) : undefined })
+      .then(function (reponse) {
+        return reponse.json().catch(function () { return {}; }).then(function (json) {
+          return { ok: reponse.ok, statut: reponse.status, code: json.error_code || json.code || '', json: json };
+        });
+      });
+  }
+
+  function envoyer(evenement) {
+    evenement.preventDefault();
+    var message = verifier(mdp.value, mdp2.value);
+    if (message) { dire(message, mdp.value.length < LONGUEUR_MIN ? mdp : mdp2); return; }
+    dire('');
+    occupe(true);
+
+    // 2. Le jeton n'est échangé qu'ici, et une seule fois
+    var etape = session
+      ? Promise.resolve(session)
+      : appeler('POST', '/verify', { type: 'recovery', token_hash: jeton }).then(function (r) {
+          if (!r.ok || !r.json.access_token) throw r;
+          session = r.json.access_token;
+          return session;
+        });
+
+    etape.then(function (acces) {
+      // 3. Changement du mot de passe
+      return appeler('PUT', '/user', { password: mdp.value }, acces).then(function (r) {
+        if (!r.ok) throw r;
+        // Fermeture de la session ouverte pour l'occasion (sans attendre, sans bloquer)
+        appeler('POST', '/logout?scope=local', null, acces).catch(function () { /* rien */ });
+        session = null;
+        mdp.value = '';
+        mdp2.value = '';
+        montrer('ok');
+      });
+    }).catch(function (r) {
+      occupe(false);
+      if (r && typeof r.statut === 'number') {
+        if (r.code === 'weak_password') { dire('Ce mot de passe est trop simple. Choisissez-en un plus long ou moins courant.', mdp); return; }
+        if (r.code === 'same_password') { dire('Ce mot de passe est déjà le vôtre. Choisissez-en un autre, ou connectez-vous dans Pawer avec celui-ci.', mdp); return; }
+        if (r.statut === 429) { dire('Trop d’essais en peu de temps. Patientez une minute, puis réessayez.'); return; }
+        // Lien expiré, déjà utilisé, ou session perdue : il faut un nouvel e-mail
+        if (r.statut === 401 || r.statut === 403 || r.code === 'otp_expired') { montrer('erreur'); return; }
+        dire('Le mot de passe n’a pas pu être enregistré. Réessayez dans un instant.');
+        return;
+      }
+      dire('Connexion impossible. Vérifiez votre réseau, puis réessayez : votre lien reste valable.');
+    });
+  }
+
+  document.getElementById('formulaire').addEventListener('submit', envoyer);
+  document.getElementById('voir').addEventListener('change', function (e) {
+    mdp.type = mdp2.type = e.target.checked ? 'text' : 'password';
+  });
+
+  // Sur Android, un bouton rouvre l'application (sans rien lui transmettre)
+  if (/Android/i.test(navigator.userAgent)) {
+    var ouvrir = document.getElementById('ouvrir');
+    ouvrir.href = 'intent://#Intent;scheme=pawer;package=com.studiohlf.pawer;end';
+    ouvrir.hidden = false;
+  }
+
+  montrer(jeton ? 'formulaire' : 'neutre');
+})();
+</script>
+</body>
+</html>
